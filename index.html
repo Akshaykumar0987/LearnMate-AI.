@@ -3,25 +3,289 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>LearnMate AI</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7ff;
+            color: #172033;
+        }
+
+        nav {
+            height: 70px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4f46e5;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links button {
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 15px;
+            color: #374151;
+        }
+
+        .nav-links button:hover {
+            color: #4f46e5;
+        }
+
+        .hero {
+            min-height: calc(100vh - 70px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #eef2ff;
+            color: #4f46e5;
+            padding: 8px 16px;
+            border-radius: 30px;
+            margin-bottom: 25px;
+            font-weight: bold;
+        }
+
+        h1 {
+            font-size: clamp(45px, 7vw, 80px);
+            line-height: 1;
+            margin-bottom: 25px;
+        }
+
+        .gradient {
+            background: linear-gradient(90deg, #4f46e5, #9333ea);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 20px;
+            line-height: 1.6;
+            color: #64748b;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .buttons {
+            margin-top: 35px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .primary,
+        .secondary {
+            padding: 15px 25px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .primary {
+            border: none;
+            background: #4f46e5;
+            color: white;
+        }
+
+        .secondary {
+            border: 1px solid #cbd5e1;
+            background: white;
+            color: #334155;
+        }
+
+        .primary:hover,
+        .secondary:hover {
+            transform: translateY(-2px);
+        }
+
+        #app {
+            display: none;
+            padding: 60px 7%;
+            min-height: 100vh;
+        }
+
+        .dashboard {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin-top: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+        }
+
+        .back {
+            border: none;
+            background: #4f46e5;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 700px) {
+            nav {
+                padding: 0 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            h1 {
+                font-size: 50px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-    <h1>LearnMate AI</h1>
-    <p>Your Personalized AI Learning Companion</p>
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="logo">LearnMate AI</div>
 
-    <button onclick="testButton()">
-        TEST JAVASCRIPT
-    </button>
+        <div class="nav-links">
+            <button onclick="openApp()">Dashboard</button>
+            <button onclick="openApp()">Assessment</button>
+            <button onclick="openApp()">Learning Path</button>
+            <button onclick="openApp()">Resources</button>
+            <button onclick="openApp()">AI Assistant</button>
+        </div>
+    </nav>
 
-    <h2 id="status">Waiting...</h2>
+    <!-- LANDING PAGE -->
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+
+            <div class="badge">
+                ✦ AI-Powered Personalized Learning
+            </div>
+
+            <h1>
+                Learn smarter.<br>
+                <span class="gradient">Learn your way.</span>
+            </h1>
+
+            <p>
+                LearnMate AI analyzes your skills, identifies your learning
+                gaps, and creates a personalized learning journey designed
+                around you.
+            </p>
+
+            <div class="buttons">
+
+                <button class="primary" onclick="startJourney()">
+                    Start My Learning Journey →
+                </button>
+
+                <button class="secondary" onclick="demoMode()">
+                    Explore Demo
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- APPLICATION AREA -->
+    <section id="app">
+
+        <div class="dashboard">
+
+            <h1 style="font-size:42px;">
+                Welcome to <span class="gradient">LearnMate AI</span>
+            </h1>
+
+            <p style="margin-top:15px;color:#64748b;">
+                Your personalized learning dashboard.
+            </p>
+
+            <div class="card">
+                <h2>🚀 Your Learning Journey</h2>
+
+                <p style="margin-top:15px;">
+                    Your dashboard is ready.
+                </p>
+
+                <p style="margin-top:10px;">
+                    Next, we'll add your profile, Python assessment,
+                    AI skill-gap analysis, personalized roadmap,
+                    resources and AI assistant.
+                </p>
+
+                <button class="back" onclick="goHome()">
+                    ← Back to Home
+                </button>
+            </div>
+
+        </div>
+
+    </section>
 
     <script>
-        function testButton() {
-            document.getElementById("status").textContent =
-                "✅ JAVASCRIPT IS WORKING!";
+
+        function startJourney() {
+            document.getElementById("home").style.display = "none";
+            document.getElementById("app").style.display = "block";
+            window.scrollTo(0, 0);
         }
+
+        function openApp() {
+            document.getElementById("home").style.display = "none";
+            document.getElementById("app").style.display = "block";
+            window.scrollTo(0, 0);
+        }
+
+        function demoMode() {
+            document.getElementById("home").style.display = "none";
+            document.getElementById("app").style.display = "block";
+            window.scrollTo(0, 0);
+        }
+
+        function goHome() {
+            document.getElementById("app").style.display = "none";
+            document.getElementById("home").style.display = "flex";
+            window.scrollTo(0, 0);
+        }
+
     </script>
 
 </body>
