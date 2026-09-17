@@ -3,259 +3,285 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>LearnMate AI</title>
 
 <style>
-
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 body{
-    font-family:Arial,sans-serif;
-    background:#f5f7ff;
-    color:#172033;
+font-family:Arial,sans-serif;
+background:#f5f7ff;
+color:#172033;
 }
 
 nav{
-    height:70px;
-    background:white;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 7%;
-    border-bottom:1px solid #e5e7eb;
+height:70px;background:white;
+display:flex;align-items:center;
+justify-content:space-between;
+padding:0 7%;
+border-bottom:1px solid #e5e7eb;
+position:sticky;top:0;z-index:10;
 }
 
-.logo{
-    font-size:24px;
-    font-weight:bold;
-    color:#4f46e5;
-}
+.logo{font-size:24px;font-weight:bold;color:#4f46e5}
 
-.nav-links{
-    display:flex;
-    gap:20px;
-}
+.nav-links{display:flex;gap:20px}
 
 .nav-links button{
-    border:none;
-    background:transparent;
-    cursor:pointer;
-    font-size:15px;
-    color:#374151;
+border:0;background:transparent;
+cursor:pointer;font-size:15px;color:#374151;
 }
 
-.nav-links button:hover{
-    color:#4f46e5;
-}
+.nav-links button:hover{color:#4f46e5}
 
 .page{
-    min-height:calc(100vh - 70px);
-    padding:60px 20px;
+min-height:calc(100vh - 70px);
+padding:55px 20px;
 }
 
-.container{
-    max-width:900px;
-    margin:auto;
-}
+.container{max-width:950px;margin:auto}
 
 .badge{
-    display:inline-block;
-    background:#eef2ff;
-    color:#4f46e5;
-    padding:8px 16px;
-    border-radius:30px;
-    font-weight:bold;
-    margin-bottom:20px;
+display:inline-block;
+background:#eef2ff;
+color:#4f46e5;
+padding:8px 16px;
+border-radius:30px;
+font-weight:bold;
+margin-bottom:20px;
 }
 
-.title{
-    font-size:48px;
-    margin-bottom:12px;
-}
+.title{font-size:45px;margin-bottom:12px}
 
 .gradient{
-    background:linear-gradient(90deg,#4f46e5,#9333ea);
-    -webkit-background-clip:text;
-    color:transparent;
+background:linear-gradient(90deg,#4f46e5,#9333ea);
+-webkit-background-clip:text;
+color:transparent;
 }
 
 .subtitle{
-    color:#64748b;
-    font-size:18px;
-    line-height:1.6;
-    margin-bottom:35px;
+color:#64748b;
+font-size:18px;
+line-height:1.6;
+margin-bottom:30px;
 }
 
 .card{
-    background:white;
-    padding:35px;
-    border-radius:22px;
-    box-shadow:0 12px 35px rgba(0,0,0,.07);
+background:white;
+padding:32px;
+border-radius:22px;
+box-shadow:0 12px 35px rgba(0,0,0,.07);
+margin-bottom:25px;
 }
 
 .form-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:22px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px;
 }
 
-.field{
-    display:flex;
-    flex-direction:column;
-    gap:8px;
+.field{display:flex;flex-direction:column;gap:8px}
+
+.field.full{grid-column:1/-1}
+
+label{font-weight:bold;font-size:14px}
+
+input,select,textarea{
+width:100%;
+padding:14px;
+border:1px solid #dbe1ea;
+border-radius:11px;
+font-size:15px;
+outline:none;
+background:white;
 }
 
-.field.full{
-    grid-column:1 / -1;
-}
-
-label{
-    font-weight:bold;
-    font-size:14px;
-}
-
-input,
-select,
-textarea{
-    width:100%;
-    padding:14px;
-    border:1px solid #dbe1ea;
-    border-radius:11px;
-    font-size:15px;
-    outline:none;
-    background:white;
-}
-
-input:focus,
-select:focus,
-textarea:focus{
-    border-color:#6366f1;
-    box-shadow:0 0 0 3px #eef2ff;
-}
-
-textarea{
-    resize:vertical;
-    min-height:100px;
-}
-
-.button-row{
-    display:flex;
-    justify-content:flex-end;
-    margin-top:30px;
-}
+textarea{min-height:100px;resize:vertical}
 
 .primary{
-    border:none;
-    background:#4f46e5;
-    color:white;
-    padding:15px 25px;
-    border-radius:11px;
-    font-size:16px;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.primary:hover{
-    transform:translateY(-2px);
+border:0;
+background:#4f46e5;
+color:white;
+padding:15px 25px;
+border-radius:11px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer;
 }
 
 .secondary{
-    border:1px solid #cbd5e1;
-    background:white;
-    padding:14px 22px;
-    border-radius:11px;
-    cursor:pointer;
+border:1px solid #cbd5e1;
+background:white;
+padding:13px 20px;
+border-radius:11px;
+cursor:pointer;
 }
 
-.dashboard{
-    display:none;
+.button-row{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-top:28px;
 }
 
-.profile-card{
-    margin-top:25px;
+#profile,#dashboard,#assessment,#results{
+display:none;
 }
 
-.profile-row{
-    display:flex;
-    justify-content:space-between;
-    padding:15px 0;
-    border-bottom:1px solid #eef0f4;
+/* Assessment */
+
+.question-number{
+font-size:14px;
+color:#6366f1;
+font-weight:bold;
+margin-bottom:12px;
 }
 
-.profile-row:last-child{
-    border-bottom:none;
+.question{
+font-size:24px;
+font-weight:bold;
+line-height:1.4;
+margin-bottom:25px;
 }
 
-.profile-label{
-    color:#64748b;
+.options{
+display:grid;
+gap:12px;
 }
 
-.message{
-    margin-top:20px;
-    padding:14px;
-    border-radius:10px;
-    background:#ecfdf5;
-    color:#047857;
-    display:none;
+.option{
+border:1px solid #dbe1ea;
+background:white;
+padding:16px;
+border-radius:12px;
+cursor:pointer;
+text-align:left;
+font-size:15px;
+transition:.2s;
 }
+
+.option:hover{
+border-color:#6366f1;
+background:#f5f3ff;
+}
+
+.option.selected{
+border-color:#4f46e5;
+background:#eef2ff;
+}
+
+.progress-box{
+margin-bottom:25px;
+}
+
+.progress-track{
+height:9px;
+background:#e5e7eb;
+border-radius:20px;
+overflow:hidden;
+}
+
+.progress-bar{
+height:100%;
+width:10%;
+background:linear-gradient(90deg,#4f46e5,#9333ea);
+transition:.3s;
+}
+
+.test-controls{
+display:flex;
+justify-content:space-between;
+margin-top:30px;
+}
+
+/* Results */
+
+.score-circle{
+width:170px;
+height:170px;
+border-radius:50%;
+border:12px solid #6366f1;
+display:flex;
+align-items:center;
+justify-content:center;
+flex-direction:column;
+margin:20px auto;
+}
+
+.score-number{
+font-size:48px;
+font-weight:bold;
+}
+
+.topic{
+margin:18px 0;
+}
+
+.topic-head{
+display:flex;
+justify-content:space-between;
+margin-bottom:7px;
+font-weight:bold;
+}
+
+.topic-track{
+height:10px;
+background:#e5e7eb;
+border-radius:20px;
+overflow:hidden;
+}
+
+.topic-fill{
+height:100%;
+background:#6366f1;
+}
+
+.analysis{
+background:#f8fafc;
+padding:20px;
+border-radius:15px;
+margin-top:20px;
+line-height:1.7;
+}
+
+.dashboard-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:18px;
+}
+
+.stat{
+background:white;
+padding:25px;
+border-radius:18px;
+box-shadow:0 8px 25px rgba(0,0,0,.05);
+}
+
+.stat small{color:#64748b}
+.stat h2{margin-top:10px}
 
 @media(max-width:700px){
-
-    .nav-links{
-        display:none;
-    }
-
-    .form-grid{
-        grid-template-columns:1fr;
-    }
-
-    .field.full{
-        grid-column:auto;
-    }
-
-    .title{
-        font-size:38px;
-    }
-
-    .card{
-        padding:22px;
-    }
+.nav-links{display:none}
+.form-grid{grid-template-columns:1fr}
+.field.full{grid-column:auto}
+.title{font-size:36px}
+.card{padding:22px}
+.dashboard-grid{grid-template-columns:1fr}
 }
-
 </style>
 </head>
 
 <body>
 
 <nav>
+<div class="logo">LearnMate AI</div>
 
-    <div class="logo">
-        LearnMate AI
-    </div>
-
-    <div class="nav-links">
-
-        <button onclick="showHome()">Home</button>
-
-        <button onclick="showProfile()">
-            Profile
-        </button>
-
-        <button onclick="showDashboard()">
-            Dashboard
-        </button>
-
-        <button onclick="showProfile()">
-            Assessment
-        </button>
-
-    </div>
-
+<div class="nav-links">
+<button onclick="showHome()">Home</button>
+<button onclick="showDashboard()">Dashboard</button>
+<button onclick="showProfile()">Profile</button>
+<button onclick="startAssessment()">Assessment</button>
+</div>
 </nav>
 
 
@@ -263,494 +289,713 @@ textarea{
 
 <section id="home" class="page">
 
-    <div class="container">
+<div class="container">
 
-        <div class="badge">
-            ✦ AI-Powered Personalized Learning
-        </div>
+<div class="badge">✦ AI-Powered Personalized Learning</div>
 
-        <h1 class="title">
-            Learn smarter.<br>
-            <span class="gradient">
-                Learn your way.
-            </span>
-        </h1>
+<h1 class="title">
+Learn smarter.<br>
+<span class="gradient">Learn your way.</span>
+</h1>
 
-        <p class="subtitle">
-            LearnMate AI understands your current skills,
-            identifies your learning gaps and builds a
-            personalized learning journey around you.
-        </p>
+<p class="subtitle">
+LearnMate AI analyzes your knowledge, identifies skill gaps,
+and creates a personalized learning path for you.
+</p>
 
-        <button class="primary" onclick="showProfile()">
-            Start My Learning Journey →
-        </button>
+<button class="primary" onclick="showProfile()">
+Start My Learning Journey →
+</button>
 
-    </div>
+</div>
 
 </section>
 
 
 <!-- PROFILE -->
 
-<section id="profile" class="page" style="display:none;">
+<section id="profile" class="page">
 
-    <div class="container">
+<div class="container">
 
-        <div class="badge">
-            STEP 1 OF YOUR JOURNEY
-        </div>
+<div class="badge">STEP 1</div>
 
-        <h1 class="title">
-            Tell us about <span class="gradient">you.</span>
-        </h1>
+<h1 class="title">
+Tell us about <span class="gradient">you.</span>
+</h1>
 
-        <p class="subtitle">
-            LearnMate AI will use this information to
-            personalize your learning experience.
-        </p>
+<p class="subtitle">
+This information helps LearnMate AI personalize your experience.
+</p>
 
+<div class="card">
 
-        <div class="card">
+<form id="profileForm">
 
-            <form id="profileForm">
+<div class="form-grid">
 
-                <div class="form-grid">
+<div class="field">
+<label>Full Name</label>
+<input id="name" required placeholder="Enter your name">
+</div>
 
-                    <div class="field">
+<div class="field">
+<label>Branch</label>
+<input id="branch" required placeholder="CSE AIML">
+</div>
 
-                        <label>
-                            Full Name
-                        </label>
+<div class="field">
+<label>Year</label>
+<select id="year" required>
+<option value="">Select year</option>
+<option>1st Year</option>
+<option>2nd Year</option>
+<option>3rd Year</option>
+<option>4th Year</option>
+</select>
+</div>
 
-                        <input
-                            id="name"
-                            type="text"
-                            placeholder="Enter your name"
-                            required
-                        >
+<div class="field">
+<label>Current Skill Level</label>
+<select id="skill" required>
+<option value="">Select level</option>
+<option>Beginner</option>
+<option>Intermediate</option>
+<option>Advanced</option>
+</select>
+</div>
 
-                    </div>
+<div class="field full">
+<label>Interests</label>
+<input id="interests" required placeholder="Python, AI/ML, Web Development">
+</div>
 
+<div class="field full">
+<label>Learning Goal</label>
+<textarea id="goal" required placeholder="What do you want to achieve?"></textarea>
+</div>
 
-                    <div class="field">
+</div>
 
-                        <label>
-                            Branch
-                        </label>
+<div class="button-row">
+<button type="button" class="secondary" onclick="showHome()">← Back</button>
 
-                        <input
-                            id="branch"
-                            type="text"
-                            placeholder="e.g. CSE AIML"
-                            required
-                        >
+<button type="submit" class="primary">
+Continue to Assessment →
+</button>
+</div>
 
-                    </div>
+</form>
 
-
-                    <div class="field">
-
-                        <label>
-                            Year
-                        </label>
-
-                        <select id="year" required>
-
-                            <option value="">
-                                Select year
-                            </option>
-
-                            <option>
-                                1st Year
-                            </option>
-
-                            <option>
-                                2nd Year
-                            </option>
-
-                            <option>
-                                3rd Year
-                            </option>
-
-                            <option>
-                                4th Year
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div class="field">
-
-                        <label>
-                            Current Skill Level
-                        </label>
-
-                        <select id="skill" required>
-
-                            <option value="">
-                                Select level
-                            </option>
-
-                            <option>
-                                Beginner
-                            </option>
-
-                            <option>
-                                Intermediate
-                            </option>
-
-                            <option>
-                                Advanced
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div class="field full">
-
-                        <label>
-                            Interests
-                        </label>
-
-                        <input
-                            id="interests"
-                            type="text"
-                            placeholder="Python, AI, Web Development..."
-                            required
-                        >
-
-                    </div>
-
-
-                    <div class="field full">
-
-                        <label>
-                            What is your main learning goal?
-                        </label>
-
-                        <textarea
-                            id="goal"
-                            placeholder="Example: I want to learn Python and eventually build AI applications."
-                            required
-                        ></textarea>
-
-                    </div>
-
-                </div>
-
-
-                <div class="button-row">
-
-                    <button
-                        type="submit"
-                        class="primary"
-                    >
-                        Continue to Assessment →
-                    </button>
-
-                </div>
-
-            </form>
-
-
-            <div
-                id="successMessage"
-                class="message"
-            >
-                ✅ Profile saved successfully!
-            </div>
-
-        </div>
-
-    </div>
-
+</div>
+</div>
 </section>
 
 
 <!-- DASHBOARD -->
 
-<section id="dashboard" class="page dashboard">
+<section id="dashboard" class="page">
 
-    <div class="container">
+<div class="container">
 
-        <div class="badge">
-            PERSONALIZED DASHBOARD
-        </div>
+<div class="badge">PERSONALIZED DASHBOARD</div>
 
-        <h1 class="title">
-            Welcome, <span id="welcomeName" class="gradient"></span>!
-        </h1>
+<h1 class="title">
+Welcome, <span id="welcomeName" class="gradient"></span>!
+</h1>
 
-        <p class="subtitle">
-            Here's what LearnMate AI knows about your learning journey.
-        </p>
+<p class="subtitle">
+Your learning intelligence center.
+</p>
 
+<div class="dashboard-grid">
 
-        <div class="card profile-card">
+<div class="stat">
+<small>Assessment Score</small>
+<h2 id="dashScore">Not taken</h2>
+</div>
 
-            <h2>
-                👤 Your Learning Profile
-            </h2>
+<div class="stat">
+<small>Primary Skill Gap</small>
+<h2 id="dashGap">Take assessment</h2>
+</div>
 
+<div class="stat">
+<small>Learning Level</small>
+<h2 id="dashLevel">—</h2>
+</div>
 
-            <div class="profile-row">
+</div>
 
-                <span class="profile-label">
-                    Branch
-                </span>
+<div class="card" style="margin-top:25px">
 
-                <strong id="displayBranch"></strong>
+<h2>🧠 AI Learning Analysis</h2>
 
-            </div>
+<div id="dashAnalysis" class="analysis">
+Complete your assessment to unlock personalized analysis.
+</div>
 
+<br>
 
-            <div class="profile-row">
+<button class="primary" onclick="startAssessment()">
+Take Python Assessment →
+</button>
 
-                <span class="profile-label">
-                    Year
-                </span>
+</div>
 
-                <strong id="displayYear"></strong>
+</div>
 
-            </div>
-
-
-            <div class="profile-row">
-
-                <span class="profile-label">
-                    Skill Level
-                </span>
-
-                <strong id="displaySkill"></strong>
-
-            </div>
+</section>
 
 
-            <div class="profile-row">
+<!-- ASSESSMENT -->
 
-                <span class="profile-label">
-                    Interests
-                </span>
+<section id="assessment" class="page">
 
-                <strong id="displayInterests"></strong>
+<div class="container">
 
-            </div>
+<div class="badge">STEP 2 • AI SKILL ASSESSMENT</div>
+
+<h1 class="title">
+Discover your <span class="gradient">Python level.</span>
+</h1>
+
+<p class="subtitle">
+10 questions. Your answers will determine your strengths,
+weaknesses and learning priorities.
+</p>
+
+<div class="progress-box">
+
+<div style="display:flex;justify-content:space-between;margin-bottom:8px">
+<strong id="questionCounter">Question 1 of 10</strong>
+<span id="progressPercent">10%</span>
+</div>
+
+<div class="progress-track">
+<div id="progressBar" class="progress-bar"></div>
+</div>
+
+</div>
+
+<div class="card">
+
+<div id="questionNumber" class="question-number">
+QUESTION 1
+</div>
+
+<div id="questionText" class="question"></div>
+
+<div id="options" class="options"></div>
+
+<div class="test-controls">
+
+<button class="secondary" onclick="previousQuestion()">
+← Previous
+</button>
+
+<button class="primary" onclick="nextQuestion()">
+Next →
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
 
 
-            <div class="profile-row">
+<!-- RESULTS -->
 
-                <span class="profile-label">
-                    Learning Goal
-                </span>
+<section id="results" class="page">
 
-                <strong id="displayGoal"></strong>
+<div class="container">
 
-            </div>
+<div class="badge">ASSESSMENT COMPLETE</div>
+
+<h1 class="title" style="text-align:center">
+Your <span class="gradient">Learning Intelligence</span>
+</h1>
+
+<p class="subtitle" style="text-align:center">
+LearnMate AI analyzed your responses.
+</p>
+
+<div class="card" style="text-align:center">
+
+<div class="score-circle">
+<div id="finalScore" class="score-number">0</div>
+<small>/ 100</small>
+</div>
+
+<h2 id="levelText"></h2>
+
+<div id="overallAnalysis" class="analysis"></div>
+
+</div>
 
 
-            <div style="margin-top:25px;">
+<div class="card">
 
-                <button
-                    class="secondary"
-                    onclick="showProfile()"
-                >
-                    ✏️ Edit Profile
-                </button>
+<h2>📊 Topic-wise Performance</h2>
 
-            </div>
+<div id="topicResults"></div>
 
-        </div>
+</div>
 
-    </div>
+
+<div class="card">
+
+<h2>🎯 Your Primary Skill Gap</h2>
+
+<div id="gapResult" class="analysis"></div>
+
+<br>
+
+<button class="primary" onclick="showDashboard()">
+Go to Personalized Dashboard →
+</button>
+
+</div>
+
+</div>
 
 </section>
 
 
 <script>
 
-const home = document.getElementById("home");
-const profile = document.getElementById("profile");
-const dashboard = document.getElementById("dashboard");
+/* =========================
+   QUESTIONS
+========================= */
 
+const questions = [
+
+{
+topic:"Python Basics",
+question:"Which keyword is used to define a function in Python?",
+options:["func","define","def","function"],
+answer:2
+},
+
+{
+topic:"Variables",
+question:"What is the data type of x = 10?",
+options:["string","float","integer","boolean"],
+answer:2
+},
+
+{
+topic:"Conditions",
+question:"Which keyword is used to check another condition after if?",
+options:["else if","elif","elseif","otherwise"],
+answer:1
+},
+
+{
+topic:"Loops",
+question:"Which loop is commonly used to iterate over a sequence?",
+options:["repeat","for","loop","iterate"],
+answer:1
+},
+
+{
+topic:"Functions",
+question:"What does the return statement do?",
+options:[
+"Stops Python completely",
+"Returns a value from a function",
+"Prints a value",
+"Creates a variable"
+],
+answer:1
+},
+
+{
+topic:"Lists",
+question:"Which syntax creates a Python list?",
+options:[
+"{1,2,3}",
+"(1,2,3)",
+"[1,2,3]",
+"<1,2,3>"
+],
+answer:2
+},
+
+{
+topic:"Python Basics",
+question:"Which function is used to display output?",
+options:["display()","echo()","print()","output()"],
+answer:2
+},
+
+{
+topic:"Variables",
+question:"Which symbol is used for assignment in Python?",
+options:["==","=","!=","=>"],
+answer:1
+},
+
+{
+topic:"Loops",
+question:"Which keyword immediately exits a loop?",
+options:["stop","exit","break","end"],
+answer:2
+},
+
+{
+topic:"Functions",
+question:"Which keyword is used to create an anonymous function?",
+options:["anonymous","lambda","function","inline"],
+answer:1
+}
+
+];
+
+
+let currentQuestion=0;
+let answers=new Array(questions.length).fill(null);
+
+
+/* =========================
+   PAGE CONTROL
+========================= */
 
 function hideAll(){
 
-    home.style.display = "none";
-
-    profile.style.display = "none";
-
-    dashboard.style.display = "none";
+document.getElementById("home").style.display="none";
+document.getElementById("profile").style.display="none";
+document.getElementById("dashboard").style.display="none";
+document.getElementById("assessment").style.display="none";
+document.getElementById("results").style.display="none";
 
 }
-
 
 function showHome(){
 
-    hideAll();
+hideAll();
 
-    home.style.display = "block";
+document.getElementById("home").style.display="block";
 
 }
-
 
 function showProfile(){
 
-    hideAll();
+hideAll();
 
-    profile.style.display = "block";
+document.getElementById("profile").style.display="block";
 
-    loadProfile();
+loadProfile();
 
 }
-
 
 function showDashboard(){
 
-    const saved = localStorage.getItem("learnmateProfile");
+const profileData=localStorage.getItem("learnmateProfile");
 
-    if(!saved){
+if(!profileData){
 
-        showProfile();
-
-        return;
-
-    }
-
-    loadDashboard();
+showProfile();
+return;
 
 }
 
+hideAll();
+
+document.getElementById("dashboard").style.display="block";
+
+loadDashboard();
+
+}
+
+
+/* =========================
+   PROFILE
+========================= */
 
 function loadProfile(){
 
-    const saved =
-        localStorage.getItem("learnmateProfile");
+const saved=localStorage.getItem("learnmateProfile");
 
-    if(!saved){
+if(!saved)return;
 
-        return;
+const data=JSON.parse(saved);
 
-    }
-
-    const data = JSON.parse(saved);
-
-    document.getElementById("name").value =
-        data.name || "";
-
-    document.getElementById("branch").value =
-        data.branch || "";
-
-    document.getElementById("year").value =
-        data.year || "";
-
-    document.getElementById("skill").value =
-        data.skill || "";
-
-    document.getElementById("interests").value =
-        data.interests || "";
-
-    document.getElementById("goal").value =
-        data.goal || "";
+document.getElementById("name").value=data.name||"";
+document.getElementById("branch").value=data.branch||"";
+document.getElementById("year").value=data.year||"";
+document.getElementById("skill").value=data.skill||"";
+document.getElementById("interests").value=data.interests||"";
+document.getElementById("goal").value=data.goal||"";
 
 }
 
 
-function loadDashboard(){
+document.getElementById("profileForm").addEventListener("submit",function(e){
 
-    const saved =
-        localStorage.getItem("learnmateProfile");
+e.preventDefault();
 
-    if(!saved){
+const data={
 
-        showProfile();
+name:document.getElementById("name").value.trim(),
+branch:document.getElementById("branch").value.trim(),
+year:document.getElementById("year").value,
+skill:document.getElementById("skill").value,
+interests:document.getElementById("interests").value.trim(),
+goal:document.getElementById("goal").value.trim()
 
-        return;
+};
 
-    }
+localStorage.setItem(
+"learnmateProfile",
+JSON.stringify(data)
+);
 
-    const data = JSON.parse(saved);
+startAssessment();
 
-    document.getElementById("welcomeName").textContent =
-        data.name;
+});
 
-    document.getElementById("displayBranch").textContent =
-        data.branch;
 
-    document.getElementById("displayYear").textContent =
-        data.year;
+/* =========================
+   ASSESSMENT
+========================= */
 
-    document.getElementById("displaySkill").textContent =
-        data.skill;
+function startAssessment(){
 
-    document.getElementById("displayInterests").textContent =
-        data.interests;
+const profileData=localStorage.getItem("learnmateProfile");
 
-    document.getElementById("displayGoal").textContent =
-        data.goal;
+if(!profileData){
 
-    hideAll();
+showProfile();
+return;
 
-    dashboard.style.display = "block";
+}
+
+hideAll();
+
+document.getElementById("assessment").style.display="block";
+
+currentQuestion=0;
+
+answers=new Array(questions.length).fill(null);
+
+renderQuestion();
+
+window.scrollTo(0,0);
 
 }
 
 
-document
-    .getElementById("profileForm")
-    .addEventListener("submit", function(event){
+function renderQuestion(){
 
-        event.preventDefault();
+const q=questions[currentQuestion];
+
+document.getElementById("questionNumber").textContent=
+"QUESTION "+(currentQuestion+1);
+
+document.getElementById("questionCounter").textContent=
+"Question "+(currentQuestion+1)+" of "+questions.length;
+
+const percent=Math.round(
+((currentQuestion+1)/questions.length)*100
+);
+
+document.getElementById("progressPercent").textContent=
+percent+"%";
+
+document.getElementById("progressBar").style.width=
+percent+"%";
+
+document.getElementById("questionText").textContent=
+q.question;
+
+const optionsContainer=
+document.getElementById("options");
+
+optionsContainer.innerHTML="";
+
+q.options.forEach((option,index)=>{
+
+const button=document.createElement("button");
+
+button.className="option";
+
+button.textContent=
+String.fromCharCode(65+index)+". "+option;
+
+if(answers[currentQuestion]===index){
+
+button.classList.add("selected");
+
+}
+
+button.onclick=function(){
+
+answers[currentQuestion]=index;
+
+renderQuestion();
+
+};
+
+optionsContainer.appendChild(button);
+
+});
+
+}
 
 
-        const data = {
+function nextQuestion(){
 
-            name:
-                document.getElementById("name").value.trim(),
+if(answers[currentQuestion]===null){
 
-            branch:
-                document.getElementById("branch").value.trim(),
+alert("Please select an answer first.");
 
-            year:
-                document.getElementById("year").value,
+return;
 
-            skill:
-                document.getElementById("skill").value,
+}
 
-            interests:
-                document.getElementById("interests").value.trim(),
+if(currentQuestion<questions.length-1){
 
-            goal:
-                document.getElementById("goal").value.trim()
+currentQuestion++;
 
-        };
+renderQuestion();
 
+}else{
 
-        localStorage.setItem(
-            "learnmateProfile",
-            JSON.stringify(data)
-        );
+calculateResults();
+
+}
+
+}
 
 
-        document.getElementById(
-            "successMessage"
-        ).style.display = "block";
+function previousQuestion(){
+
+if(currentQuestion>0){
+
+currentQuestion--;
+
+renderQuestion();
+
+}
+
+}
 
 
-        setTimeout(function(){
+/* =========================
+   RESULTS
+========================= */
 
-            loadDashboard();
+function calculateResults(){
 
-        },700);
+let correct=0;
 
-    });
+const topicData={};
+
+questions.forEach((q,index)=>{
+
+if(!topicData[q.topic]){
+
+topicData[q.topic]={
+correct:0,
+total:0
+};
+
+}
+
+topicData[q.topic].total++;
+
+if(answers[index]===q.answer){
+
+correct++;
+
+topicData[q.topic].correct++;
+
+}
+
+});
 
 
-</script>
+const score=Math.round(
+(correct/questions.length)*100
+);
 
-</body>
-</html>
+
+let level="";
+
+if(score<40){
+
+level="Beginner";
+
+}else if(score<70){
+
+level="Intermediate";
+
+}else{
+
+level="Advanced";
+
+}
+
+
+/* Find weakest topic */
+
+let weakest="";
+let weakestScore=101;
+
+let strongest="";
+let strongestScore=-1;
+
+Object.keys(topicData).forEach(topic=>{
+
+const percentage=Math.round(
+(topicData[topic].correct/
+topicData[topic].total)*100
+);
+
+if(percentage<weakestScore){
+
+weakestScore=percentage;
+weakest=topic;
+
+}
+
+if(percentage>strongestScore){
+
+strongestScore=percentage;
+strongest=topic;
+
+}
+
+});
+
+
+const result={
+
+score:score,
+level:level,
+weakest:weakest,
+weakestScore:weakestScore,
+strongest:strongest,
+strongestScore:strongestScore,
+topics:topicData
+
+};
+
+
+localStorage.setItem(
+"learnmateAssessment",
+JSON.stringify(result)
+);
+
+
+displayResults(result);
+
+}
+
+
+/* =========================
+   DISPLAY
