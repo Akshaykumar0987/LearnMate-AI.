@@ -3,10 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>LearnMate AI</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
 
 body{
 font-family:Arial,sans-serif;
@@ -15,31 +20,50 @@ color:#172033;
 }
 
 nav{
-height:70px;background:white;
-display:flex;align-items:center;
+height:70px;
+background:white;
+display:flex;
+align-items:center;
 justify-content:space-between;
 padding:0 7%;
 border-bottom:1px solid #e5e7eb;
-position:sticky;top:0;z-index:10;
+position:sticky;
+top:0;
+z-index:20;
 }
 
-.logo{font-size:24px;font-weight:bold;color:#4f46e5}
+.logo{
+font-size:24px;
+font-weight:bold;
+color:#4f46e5;
+}
 
-.nav-links{display:flex;gap:20px}
+.nav-links{
+display:flex;
+gap:18px;
+}
 
 .nav-links button{
-border:0;background:transparent;
-cursor:pointer;font-size:15px;color:#374151;
+border:0;
+background:transparent;
+cursor:pointer;
+font-size:15px;
+color:#374151;
 }
 
-.nav-links button:hover{color:#4f46e5}
+.nav-links button:hover{
+color:#4f46e5;
+}
 
 .page{
 min-height:calc(100vh - 70px);
 padding:55px 20px;
 }
 
-.container{max-width:950px;margin:auto}
+.container{
+max-width:1050px;
+margin:auto;
+}
 
 .badge{
 display:inline-block;
@@ -51,7 +75,10 @@ font-weight:bold;
 margin-bottom:20px;
 }
 
-.title{font-size:45px;margin-bottom:12px}
+.title{
+font-size:45px;
+margin-bottom:12px;
+}
 
 .gradient{
 background:linear-gradient(90deg,#4f46e5,#9333ea);
@@ -68,10 +95,34 @@ margin-bottom:30px;
 
 .card{
 background:white;
-padding:32px;
+padding:30px;
 border-radius:22px;
 box-shadow:0 12px 35px rgba(0,0,0,.07);
 margin-bottom:25px;
+}
+
+.primary{
+border:0;
+background:#4f46e5;
+color:white;
+padding:14px 22px;
+border-radius:11px;
+font-size:15px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.secondary{
+border:1px solid #cbd5e1;
+background:white;
+padding:12px 20px;
+border-radius:11px;
+cursor:pointer;
+}
+
+.primary:hover,
+.secondary:hover{
+transform:translateY(-2px);
 }
 
 .form-grid{
@@ -80,13 +131,24 @@ grid-template-columns:1fr 1fr;
 gap:20px;
 }
 
-.field{display:flex;flex-direction:column;gap:8px}
+.field{
+display:flex;
+flex-direction:column;
+gap:8px;
+}
 
-.field.full{grid-column:1/-1}
+.field.full{
+grid-column:1/-1;
+}
 
-label{font-weight:bold;font-size:14px}
+label{
+font-weight:bold;
+font-size:14px;
+}
 
-input,select,textarea{
+input,
+select,
+textarea{
 width:100%;
 padding:14px;
 border:1px solid #dbe1ea;
@@ -96,39 +158,64 @@ outline:none;
 background:white;
 }
 
-textarea{min-height:100px;resize:vertical}
-
-.primary{
-border:0;
-background:#4f46e5;
-color:white;
-padding:15px 25px;
-border-radius:11px;
-font-size:16px;
-font-weight:bold;
-cursor:pointer;
+textarea{
+min-height:100px;
+resize:vertical;
 }
 
-.secondary{
-border:1px solid #cbd5e1;
-background:white;
-padding:13px 20px;
-border-radius:11px;
-cursor:pointer;
-}
+/* PAGE VISIBILITY */
 
-.button-row{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-top:28px;
-}
-
-#profile,#dashboard,#assessment,#results{
+#profile,
+#dashboard,
+#assessment,
+#results,
+#learningPath,
+#resources{
 display:none;
 }
 
-/* Assessment */
+/* DASHBOARD */
+
+.dashboard-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:18px;
+}
+
+.stat{
+background:white;
+padding:25px;
+border-radius:18px;
+box-shadow:0 8px 25px rgba(0,0,0,.05);
+}
+
+.stat small{
+color:#64748b;
+}
+
+.stat h2{
+margin-top:10px;
+}
+
+/* ASSESSMENT */
+
+.progress-box{
+margin-bottom:25px;
+}
+
+.progress-track{
+height:9px;
+background:#e5e7eb;
+border-radius:20px;
+overflow:hidden;
+}
+
+.progress-bar{
+height:100%;
+width:10%;
+background:linear-gradient(90deg,#4f46e5,#9333ea);
+transition:.3s;
+}
 
 .question-number{
 font-size:14px;
@@ -157,7 +244,6 @@ border-radius:12px;
 cursor:pointer;
 text-align:left;
 font-size:15px;
-transition:.2s;
 }
 
 .option:hover{
@@ -170,31 +256,13 @@ border-color:#4f46e5;
 background:#eef2ff;
 }
 
-.progress-box{
-margin-bottom:25px;
-}
-
-.progress-track{
-height:9px;
-background:#e5e7eb;
-border-radius:20px;
-overflow:hidden;
-}
-
-.progress-bar{
-height:100%;
-width:10%;
-background:linear-gradient(90deg,#4f46e5,#9333ea);
-transition:.3s;
-}
-
 .test-controls{
 display:flex;
 justify-content:space-between;
 margin-top:30px;
 }
 
-/* Results */
+/* RESULTS */
 
 .score-circle{
 width:170px;
@@ -213,6 +281,14 @@ font-size:48px;
 font-weight:bold;
 }
 
+.analysis{
+background:#f8fafc;
+padding:20px;
+border-radius:15px;
+margin-top:20px;
+line-height:1.7;
+}
+
 .topic{
 margin:18px 0;
 }
@@ -221,7 +297,6 @@ margin:18px 0;
 display:flex;
 justify-content:space-between;
 margin-bottom:7px;
-font-weight:bold;
 }
 
 .topic-track{
@@ -236,52 +311,235 @@ height:100%;
 background:#6366f1;
 }
 
-.analysis{
-background:#f8fafc;
-padding:20px;
-border-radius:15px;
-margin-top:20px;
-line-height:1.7;
-}
+/* LEARNING PATH */
 
-.dashboard-grid{
+.path-summary{
 display:grid;
 grid-template-columns:repeat(3,1fr);
 gap:18px;
+margin-bottom:25px;
 }
 
-.stat{
+.path-stat{
+padding:20px;
 background:white;
-padding:25px;
 border-radius:18px;
 box-shadow:0 8px 25px rgba(0,0,0,.05);
 }
 
-.stat small{color:#64748b}
-.stat h2{margin-top:10px}
+.roadmap-item{
+background:white;
+border-radius:20px;
+padding:25px;
+margin-bottom:18px;
+box-shadow:0 8px 25px rgba(0,0,0,.06);
+border-left:5px solid #6366f1;
+}
 
-@media(max-width:700px){
-.nav-links{display:none}
-.form-grid{grid-template-columns:1fr}
-.field.full{grid-column:auto}
-.title{font-size:36px}
-.card{padding:22px}
-.dashboard-grid{grid-template-columns:1fr}
+.roadmap-top{
+display:flex;
+justify-content:space-between;
+gap:15px;
+align-items:flex-start;
+}
+
+.priority{
+display:inline-block;
+padding:6px 10px;
+border-radius:20px;
+font-size:12px;
+font-weight:bold;
+background:#eef2ff;
+color:#4f46e5;
+}
+
+.roadmap-title{
+font-size:22px;
+font-weight:bold;
+margin:10px 0;
+}
+
+.meta{
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+color:#64748b;
+font-size:14px;
+margin:12px 0;
+}
+
+.roadmap-description{
+line-height:1.6;
+color:#475569;
+margin:12px 0;
+}
+
+.objectives{
+margin:15px 0;
+padding-left:20px;
+color:#475569;
+line-height:1.8;
+}
+
+.complete-row{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-top:20px;
+padding-top:18px;
+border-top:1px solid #eef0f4;
+}
+
+.completed{
+opacity:.65;
+border-left-color:#10b981;
+}
+
+.completed .roadmap-title{
+text-decoration:line-through;
+}
+
+/* RESOURCES */
+
+.resource-filter{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-bottom:25px;
+}
+
+.filter-btn{
+padding:10px 16px;
+border:1px solid #cbd5e1;
+background:white;
+border-radius:20px;
+cursor:pointer;
+}
+
+.filter-btn.active{
+background:#4f46e5;
+color:white;
+border-color:#4f46e5;
+}
+
+.resource-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:18px;
+}
+
+.resource-card{
+background:white;
+padding:25px;
+border-radius:20px;
+box-shadow:0 8px 25px rgba(0,0,0,.06);
+}
+
+.resource-type{
+font-size:12px;
+font-weight:bold;
+color:#6366f1;
+text-transform:uppercase;
+}
+
+.resource-card h3{
+margin:10px 0;
+font-size:20px;
+}
+
+.resource-card p{
+color:#64748b;
+line-height:1.6;
+}
+
+.resource-info{
+display:flex;
+gap:12px;
+margin-top:15px;
+font-size:13px;
+color:#64748b;
+}
+
+/* MOBILE */
+
+@media(max-width:750px){
+
+.nav-links{
+display:none;
+}
+
+.form-grid{
+grid-template-columns:1fr;
+}
+
+.field.full{
+grid-column:auto;
+}
+
+.title{
+font-size:36px;
+}
+
+.card{
+padding:22px;
+}
+
+.dashboard-grid,
+.path-summary,
+.resource-grid{
+grid-template-columns:1fr;
+}
+
+.roadmap-top{
+flex-direction:column;
+}
+
+.complete-row{
+gap:15px;
+align-items:flex-start;
+flex-direction:column;
+}
+
 }
 </style>
 </head>
 
 <body>
 
+<!-- NAVIGATION -->
+
 <nav>
-<div class="logo">LearnMate AI</div>
+
+<div class="logo">
+LearnMate AI
+</div>
 
 <div class="nav-links">
+
 <button onclick="showHome()">Home</button>
-<button onclick="showDashboard()">Dashboard</button>
-<button onclick="showProfile()">Profile</button>
-<button onclick="startAssessment()">Assessment</button>
+
+<button onclick="showDashboard()">
+Dashboard
+</button>
+
+<button onclick="showProfile()">
+Profile
+</button>
+
+<button onclick="startAssessment()">
+Assessment
+</button>
+
+<button onclick="showLearningPath()">
+Learning Path
+</button>
+
+<button onclick="showResources()">
+Resources
+</button>
+
 </div>
+
 </nav>
 
 
@@ -291,7 +549,9 @@ box-shadow:0 8px 25px rgba(0,0,0,.05);
 
 <div class="container">
 
-<div class="badge">✦ AI-Powered Personalized Learning</div>
+<div class="badge">
+✦ AI-Powered Personalized Learning
+</div>
 
 <h1 class="title">
 Learn smarter.<br>
@@ -300,7 +560,7 @@ Learn smarter.<br>
 
 <p class="subtitle">
 LearnMate AI analyzes your knowledge, identifies skill gaps,
-and creates a personalized learning path for you.
+and creates an adaptive learning journey designed around you.
 </p>
 
 <button class="primary" onclick="showProfile()">
@@ -318,14 +578,16 @@ Start My Learning Journey →
 
 <div class="container">
 
-<div class="badge">STEP 1</div>
+<div class="badge">
+STEP 1 • LEARNER PROFILE
+</div>
 
 <h1 class="title">
 Tell us about <span class="gradient">you.</span>
 </h1>
 
 <p class="subtitle">
-This information helps LearnMate AI personalize your experience.
+Your profile helps LearnMate AI personalize recommendations.
 </p>
 
 <div class="card">
@@ -346,6 +608,7 @@ This information helps LearnMate AI personalize your experience.
 
 <div class="field">
 <label>Year</label>
+
 <select id="year" required>
 <option value="">Select year</option>
 <option>1st Year</option>
@@ -353,42 +616,65 @@ This information helps LearnMate AI personalize your experience.
 <option>3rd Year</option>
 <option>4th Year</option>
 </select>
+
 </div>
 
 <div class="field">
 <label>Current Skill Level</label>
+
 <select id="skill" required>
 <option value="">Select level</option>
 <option>Beginner</option>
 <option>Intermediate</option>
 <option>Advanced</option>
 </select>
+
 </div>
 
 <div class="field full">
 <label>Interests</label>
-<input id="interests" required placeholder="Python, AI/ML, Web Development">
+
+<input
+id="interests"
+required
+placeholder="Python, AI/ML, Web Development">
 </div>
 
 <div class="field full">
-<label>Learning Goal</label>
-<textarea id="goal" required placeholder="What do you want to achieve?"></textarea>
-</div>
+<label>Main Learning Goal</label>
+
+<textarea
+id="goal"
+required
+placeholder="Example: Build AI applications"></textarea>
 
 </div>
 
-<div class="button-row">
-<button type="button" class="secondary" onclick="showHome()">← Back</button>
+</div>
 
-<button type="submit" class="primary">
+<div style="display:flex;justify-content:space-between;margin-top:28px">
+
+<button
+type="button"
+class="secondary"
+onclick="showHome()">
+← Back
+</button>
+
+<button
+type="submit"
+class="primary">
 Continue to Assessment →
 </button>
+
 </div>
 
 </form>
 
 </div>
+
 </div>
+
 </section>
 
 
@@ -398,14 +684,16 @@ Continue to Assessment →
 
 <div class="container">
 
-<div class="badge">PERSONALIZED DASHBOARD</div>
+<div class="badge">
+PERSONALIZED DASHBOARD
+</div>
 
 <h1 class="title">
 Welcome, <span id="welcomeName" class="gradient"></span>!
 </h1>
 
 <p class="subtitle">
-Your learning intelligence center.
+Your personal learning intelligence center.
 </p>
 
 <div class="dashboard-grid">
@@ -432,14 +720,24 @@ Your learning intelligence center.
 <h2>🧠 AI Learning Analysis</h2>
 
 <div id="dashAnalysis" class="analysis">
-Complete your assessment to unlock personalized analysis.
+Complete the assessment to unlock your personalized analysis.
 </div>
 
-<br>
+<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:25px">
 
-<button class="primary" onclick="startAssessment()">
-Take Python Assessment →
+<button
+class="primary"
+onclick="startAssessment()">
+Retake Assessment
 </button>
+
+<button
+class="secondary"
+onclick="showLearningPath()">
+View Learning Path →
+</button>
+
+</div>
 
 </div>
 
@@ -454,22 +752,30 @@ Take Python Assessment →
 
 <div class="container">
 
-<div class="badge">STEP 2 • AI SKILL ASSESSMENT</div>
+<div class="badge">
+STEP 2 • PYTHON ASSESSMENT
+</div>
 
 <h1 class="title">
 Discover your <span class="gradient">Python level.</span>
 </h1>
 
 <p class="subtitle">
-10 questions. Your answers will determine your strengths,
-weaknesses and learning priorities.
+10 questions designed to understand your current foundation.
 </p>
 
 <div class="progress-box">
 
 <div style="display:flex;justify-content:space-between;margin-bottom:8px">
-<strong id="questionCounter">Question 1 of 10</strong>
-<span id="progressPercent">10%</span>
+
+<strong id="questionCounter">
+Question 1 of 10
+</strong>
+
+<span id="progressPercent">
+10%
+</span>
+
 </div>
 
 <div class="progress-track">
@@ -490,11 +796,15 @@ QUESTION 1
 
 <div class="test-controls">
 
-<button class="secondary" onclick="previousQuestion()">
+<button
+class="secondary"
+onclick="previousQuestion()">
 ← Previous
 </button>
 
-<button class="primary" onclick="nextQuestion()">
+<button
+class="primary"
+onclick="nextQuestion()">
 Next →
 </button>
 
@@ -513,50 +823,58 @@ Next →
 
 <div class="container">
 
-<div class="badge">ASSESSMENT COMPLETE</div>
+<div class="badge">
+ASSESSMENT COMPLETE
+</div>
 
 <h1 class="title" style="text-align:center">
 Your <span class="gradient">Learning Intelligence</span>
 </h1>
 
-<p class="subtitle" style="text-align:center">
-LearnMate AI analyzed your responses.
-</p>
-
 <div class="card" style="text-align:center">
 
 <div class="score-circle">
-<div id="finalScore" class="score-number">0</div>
+
+<div id="finalScore" class="score-number">
+0
+</div>
+
 <small>/ 100</small>
+
 </div>
 
 <h2 id="levelText"></h2>
 
-<div id="overallAnalysis" class="analysis"></div>
+<div
+id="overallAnalysis"
+class="analysis">
+</div>
 
 </div>
 
-
 <div class="card">
 
-<h2>📊 Topic-wise Performance</h2>
+<h2>📊 Topic Performance</h2>
 
 <div id="topicResults"></div>
 
 </div>
 
-
 <div class="card">
 
-<h2>🎯 Your Primary Skill Gap</h2>
+<h2>🎯 Primary Skill Gap</h2>
 
 <div id="gapResult" class="analysis"></div>
 
-<br>
+<div style="margin-top:22px">
 
-<button class="primary" onclick="showDashboard()">
-Go to Personalized Dashboard →
+<button
+class="primary"
+onclick="showLearningPath()">
+Generate My Learning Path →
 </button>
+
+</div>
 
 </div>
 
@@ -565,13 +883,87 @@ Go to Personalized Dashboard →
 </section>
 
 
+<!-- LEARNING PATH -->
+
+<section id="learningPath" class="page">
+
+<div class="container">
+
+<div class="badge">
+🧠 ADAPTIVE AI ROADMAP
+</div>
+
+<h1 class="title">
+Your <span class="gradient">Learning Path</span>
+</h1>
+
+<p class="subtitle">
+LearnMate AI prioritizes the areas where you need the most improvement.
+</p>
+
+<div id="pathNotice" class="analysis">
+</div>
+
+<div class="path-summary">
+
+<div class="path-stat">
+<small>Roadmap Progress</small>
+<h2 id="pathProgress">0%</h2>
+</div>
+
+<div class="path-stat">
+<small>Completed</small>
+<h2 id="completedCount">0 / 0</h2>
+</div>
+
+<div class="path-stat">
+<small>Priority Topic</small>
+<h2 id="priorityTopic">—</h2>
+</div>
+
+</div>
+
+<div id="roadmapContainer"></div>
+
+</div>
+
+</section>
+
+
+<!-- RESOURCES -->
+
+<section id="resources" class="page">
+
+<div class="container">
+
+<div class="badge">
+📚 PERSONALIZED RESOURCES
+</div>
+
+<h1 class="title">
+Resources for <span class="gradient">you.</span>
+</h1>
+
+<p class="subtitle">
+Resources are organized around your identified learning gaps.
+</p>
+
+<div id="resourceFilters" class="resource-filter"></div>
+
+<div id="resourceGrid" class="resource-grid"></div>
+
+</div>
+
+</section>
+
+
 <script>
 
-/* =========================
+/* ==========================================
    QUESTIONS
-========================= */
+========================================== */
 
-const questions = [
+const questions=[
 
 {
 topic:"Python Basics",
@@ -628,28 +1020,48 @@ answer:2
 {
 topic:"Python Basics",
 question:"Which function is used to display output?",
-options:["display()","echo()","print()","output()"],
+options:[
+"display()",
+"echo()",
+"print()",
+"output()"
+],
 answer:2
 },
 
 {
 topic:"Variables",
 question:"Which symbol is used for assignment in Python?",
-options:["==","=","!=","=>"],
+options:[
+"==",
+"=",
+"!=",
+"=>"
+],
 answer:1
 },
 
 {
 topic:"Loops",
 question:"Which keyword immediately exits a loop?",
-options:["stop","exit","break","end"],
+options:[
+"stop",
+"exit",
+"break",
+"end"
+],
 answer:2
 },
 
 {
 topic:"Functions",
 question:"Which keyword is used to create an anonymous function?",
-options:["anonymous","lambda","function","inline"],
+options:[
+"anonymous",
+"lambda",
+"function",
+"inline"
+],
 answer:1
 }
 
@@ -657,12 +1069,13 @@ answer:1
 
 
 let currentQuestion=0;
+
 let answers=new Array(questions.length).fill(null);
 
 
-/* =========================
+/* ==========================================
    PAGE CONTROL
-========================= */
+========================================== */
 
 function hideAll(){
 
@@ -671,6 +1084,8 @@ document.getElementById("profile").style.display="none";
 document.getElementById("dashboard").style.display="none";
 document.getElementById("assessment").style.display="none";
 document.getElementById("results").style.display="none";
+document.getElementById("learningPath").style.display="none";
+document.getElementById("resources").style.display="none";
 
 }
 
@@ -690,35 +1105,19 @@ document.getElementById("profile").style.display="block";
 
 loadProfile();
 
-}
-
-function showDashboard(){
-
-const profileData=localStorage.getItem("learnmateProfile");
-
-if(!profileData){
-
-showProfile();
-return;
-
-}
-
-hideAll();
-
-document.getElementById("dashboard").style.display="block";
-
-loadDashboard();
+window.scrollTo(0,0);
 
 }
 
 
-/* =========================
+/* ==========================================
    PROFILE
-========================= */
+========================================== */
 
 function loadProfile(){
 
-const saved=localStorage.getItem("learnmateProfile");
+const saved=
+localStorage.getItem("learnmateProfile");
 
 if(!saved)return;
 
@@ -734,17 +1133,24 @@ document.getElementById("goal").value=data.goal||"";
 }
 
 
-document.getElementById("profileForm").addEventListener("submit",function(e){
+document
+.getElementById("profileForm")
+.addEventListener("submit",function(e){
 
 e.preventDefault();
 
 const data={
 
 name:document.getElementById("name").value.trim(),
+
 branch:document.getElementById("branch").value.trim(),
+
 year:document.getElementById("year").value,
+
 skill:document.getElementById("skill").value,
+
 interests:document.getElementById("interests").value.trim(),
+
 goal:document.getElementById("goal").value.trim()
 
 };
@@ -759,17 +1165,16 @@ startAssessment();
 });
 
 
-/* =========================
+/* ==========================================
    ASSESSMENT
-========================= */
+========================================== */
 
 function startAssessment(){
 
-const profileData=localStorage.getItem("learnmateProfile");
-
-if(!profileData){
+if(!localStorage.getItem("learnmateProfile")){
 
 showProfile();
+
 return;
 
 }
@@ -799,9 +1204,8 @@ document.getElementById("questionNumber").textContent=
 document.getElementById("questionCounter").textContent=
 "Question "+(currentQuestion+1)+" of "+questions.length;
 
-const percent=Math.round(
-((currentQuestion+1)/questions.length)*100
-);
+const percent=
+Math.round(((currentQuestion+1)/questions.length)*100);
 
 document.getElementById("progressPercent").textContent=
 percent+"%";
@@ -812,12 +1216,12 @@ percent+"%";
 document.getElementById("questionText").textContent=
 q.question;
 
-const optionsContainer=
+const container=
 document.getElementById("options");
 
-optionsContainer.innerHTML="";
+container.innerHTML="";
 
-q.options.forEach((option,index)=>{
+q.options.forEach(function(option,index){
 
 const button=document.createElement("button");
 
@@ -840,7 +1244,7 @@ renderQuestion();
 
 };
 
-optionsContainer.appendChild(button);
+container.appendChild(button);
 
 });
 
@@ -885,9 +1289,9 @@ renderQuestion();
 }
 
 
-/* =========================
-   RESULTS
-========================= */
+/* ==========================================
+   RESULTS CALCULATION
+========================================== */
 
 function calculateResults(){
 
@@ -895,7 +1299,7 @@ let correct=0;
 
 const topicData={};
 
-questions.forEach((q,index)=>{
+questions.forEach(function(q,index){
 
 if(!topicData[q.topic]){
 
@@ -919,12 +1323,10 @@ topicData[q.topic].correct++;
 });
 
 
-const score=Math.round(
-(correct/questions.length)*100
-);
+const score=
+Math.round((correct/questions.length)*100);
 
-
-let level="";
+let level;
 
 if(score<40){
 
@@ -941,17 +1343,17 @@ level="Advanced";
 }
 
 
-/* Find weakest topic */
-
 let weakest="";
 let weakestScore=101;
 
 let strongest="";
 let strongestScore=-1;
 
-Object.keys(topicData).forEach(topic=>{
 
-const percentage=Math.round(
+Object.keys(topicData).forEach(function(topic){
+
+const percentage=
+Math.round(
 (topicData[topic].correct/
 topicData[topic].total)*100
 );
@@ -975,16 +1377,15 @@ strongest=topic;
 
 const result={
 
-score:score,
-level:level,
-weakest:weakest,
-weakestScore:weakestScore,
-strongest:strongest,
-strongestScore:strongestScore,
+score,
+level,
+weakest,
+weakestScore,
+strongest,
+strongestScore,
 topics:topicData
 
 };
-
 
 localStorage.setItem(
 "learnmateAssessment",
@@ -992,14 +1393,14 @@ JSON.stringify(result)
 );
 
 
+/* Reset old roadmap because new assessment changes it */
+
+localStorage.removeItem("learnmateRoadmap");
+
 displayResults(result);
 
 }
 
-
-/* =========================
-   DISPLAY RESULTS
-========================= */
 
 function displayResults(result){
 
@@ -1014,153 +1415,14 @@ document.getElementById("levelText").textContent=
 result.level+" Level";
 
 
-let analysis="";
+let analysis;
 
 if(result.score<40){
 
 analysis=
-"Your foundation needs strengthening. LearnMate AI recommends focusing on core Python concepts before moving to advanced topics.";
+"Your Python foundation needs strengthening. LearnMate AI will prioritize fundamental concepts and guided practice.";
 
 }else if(result.score<70){
 
 analysis=
-"You have a developing Python foundation. LearnMate AI recommends targeted practice on your weaker concepts while reinforcing your existing knowledge.";
-
-}else{
-
-analysis=
-"You demonstrate a strong Python foundation. LearnMate AI can progressively introduce more challenging concepts and practical projects.";
-
-}
-
-
-document.getElementById("overallAnalysis").textContent=
-analysis;
-
-
-/* Topics */
-
-const topicResults=
-document.getElementById("topicResults");
-
-topicResults.innerHTML="";
-
-
-Object.keys(result.topics).forEach(topic=>{
-
-const data=result.topics[topic];
-
-const percentage=Math.round(
-(data.correct/data.total)*100
-);
-
-const div=document.createElement("div");
-
-div.className="topic";
-
-div.innerHTML=`
-
-<div class="topic-head">
-
-<span>${topic}</span>
-
-<strong>${percentage}%</strong>
-
-</div>
-
-<div class="topic-track">
-
-<div class="topic-fill"
-style="width:${percentage}%"></div>
-
-</div>
-
-`;
-
-topicResults.appendChild(div);
-
-});
-
-
-document.getElementById("gapResult").innerHTML=
-
-`<strong>${result.weakest}</strong> is currently your primary skill gap
-with a score of <strong>${result.weakestScore}%</strong>.
-
-<br><br>
-
-Your strongest area is <strong>${result.strongest}</strong>
-at <strong>${result.strongestScore}%</strong>.
-
-<br><br>
-
-🎯 LearnMate AI will use this analysis to prioritize your personalized learning path.`;
-
-window.scrollTo(0,0);
-
-}
-
-
-/* =========================
-   DASHBOARD
-========================= */
-
-function loadDashboard(){
-
-const profileData=
-JSON.parse(localStorage.getItem("learnmateProfile"));
-
-document.getElementById("welcomeName").textContent=
-profileData.name;
-
-
-const resultData=
-localStorage.getItem("learnmateAssessment");
-
-
-if(resultData){
-
-const result=JSON.parse(resultData);
-
-document.getElementById("dashScore").textContent=
-result.score+"/100";
-
-document.getElementById("dashGap").textContent=
-result.weakest;
-
-document.getElementById("dashLevel").textContent=
-result.level;
-
-document.getElementById("dashAnalysis").innerHTML=
-
-`Your current Python score is <strong>${result.score}%</strong>.
-
-<br><br>
-
-Your primary skill gap is <strong>${result.weakest}</strong>
-(${result.weakestScore}%).
-
-<br><br>
-
-Your strongest topic is <strong>${result.strongest}</strong>
-(${result.strongestScore}%).
-
-<br><br>
-
-The next version of LearnMate AI will use these results
-to generate your adaptive learning roadmap and resources.`;
-
-}else{
-
-document.getElementById("dashScore").textContent="Not taken";
-document.getElementById("dashGap").textContent="Take assessment";
-document.getElementById("dashLevel").textContent="—";
-
-}
-
-}
-
-</script>
-
-</body>
-</html>
+"You have a developing Python foundation. LearnMate AI will target your weaker topics while reinforcing concepts you already understa
