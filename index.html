@@ -998,4 +998,169 @@ displayResults(result);
 
 
 /* =========================
-   DISPLAY
+   DISPLAY RESULTS
+========================= */
+
+function displayResults(result){
+
+hideAll();
+
+document.getElementById("results").style.display="block";
+
+document.getElementById("finalScore").textContent=
+result.score;
+
+document.getElementById("levelText").textContent=
+result.level+" Level";
+
+
+let analysis="";
+
+if(result.score<40){
+
+analysis=
+"Your foundation needs strengthening. LearnMate AI recommends focusing on core Python concepts before moving to advanced topics.";
+
+}else if(result.score<70){
+
+analysis=
+"You have a developing Python foundation. LearnMate AI recommends targeted practice on your weaker concepts while reinforcing your existing knowledge.";
+
+}else{
+
+analysis=
+"You demonstrate a strong Python foundation. LearnMate AI can progressively introduce more challenging concepts and practical projects.";
+
+}
+
+
+document.getElementById("overallAnalysis").textContent=
+analysis;
+
+
+/* Topics */
+
+const topicResults=
+document.getElementById("topicResults");
+
+topicResults.innerHTML="";
+
+
+Object.keys(result.topics).forEach(topic=>{
+
+const data=result.topics[topic];
+
+const percentage=Math.round(
+(data.correct/data.total)*100
+);
+
+const div=document.createElement("div");
+
+div.className="topic";
+
+div.innerHTML=`
+
+<div class="topic-head">
+
+<span>${topic}</span>
+
+<strong>${percentage}%</strong>
+
+</div>
+
+<div class="topic-track">
+
+<div class="topic-fill"
+style="width:${percentage}%"></div>
+
+</div>
+
+`;
+
+topicResults.appendChild(div);
+
+});
+
+
+document.getElementById("gapResult").innerHTML=
+
+`<strong>${result.weakest}</strong> is currently your primary skill gap
+with a score of <strong>${result.weakestScore}%</strong>.
+
+<br><br>
+
+Your strongest area is <strong>${result.strongest}</strong>
+at <strong>${result.strongestScore}%</strong>.
+
+<br><br>
+
+🎯 LearnMate AI will use this analysis to prioritize your personalized learning path.`;
+
+window.scrollTo(0,0);
+
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+function loadDashboard(){
+
+const profileData=
+JSON.parse(localStorage.getItem("learnmateProfile"));
+
+document.getElementById("welcomeName").textContent=
+profileData.name;
+
+
+const resultData=
+localStorage.getItem("learnmateAssessment");
+
+
+if(resultData){
+
+const result=JSON.parse(resultData);
+
+document.getElementById("dashScore").textContent=
+result.score+"/100";
+
+document.getElementById("dashGap").textContent=
+result.weakest;
+
+document.getElementById("dashLevel").textContent=
+result.level;
+
+document.getElementById("dashAnalysis").innerHTML=
+
+`Your current Python score is <strong>${result.score}%</strong>.
+
+<br><br>
+
+Your primary skill gap is <strong>${result.weakest}</strong>
+(${result.weakestScore}%).
+
+<br><br>
+
+Your strongest topic is <strong>${result.strongest}</strong>
+(${result.strongestScore}%).
+
+<br><br>
+
+The next version of LearnMate AI will use these results
+to generate your adaptive learning roadmap and resources.`;
+
+}else{
+
+document.getElementById("dashScore").textContent="Not taken";
+document.getElementById("dashGap").textContent="Take assessment";
+document.getElementById("dashLevel").textContent="—";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
