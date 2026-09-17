@@ -1,292 +1,756 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>LearnMate AI</title>
+<title>LearnMate AI</title>
 
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+<style>
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #f5f7ff;
-            color: #172033;
-        }
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
 
-        nav {
-            height: 70px;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 7%;
-            border-bottom: 1px solid #e5e7eb;
-        }
+body{
+    font-family:Arial,sans-serif;
+    background:#f5f7ff;
+    color:#172033;
+}
 
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #4f46e5;
-        }
+nav{
+    height:70px;
+    background:white;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 7%;
+    border-bottom:1px solid #e5e7eb;
+}
 
-        .nav-links {
-            display: flex;
-            gap: 25px;
-        }
+.logo{
+    font-size:24px;
+    font-weight:bold;
+    color:#4f46e5;
+}
 
-        .nav-links button {
-            border: none;
-            background: transparent;
-            cursor: pointer;
-            font-size: 15px;
-            color: #374151;
-        }
+.nav-links{
+    display:flex;
+    gap:20px;
+}
 
-        .nav-links button:hover {
-            color: #4f46e5;
-        }
+.nav-links button{
+    border:none;
+    background:transparent;
+    cursor:pointer;
+    font-size:15px;
+    color:#374151;
+}
 
-        .hero {
-            min-height: calc(100vh - 70px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 40px 20px;
-        }
+.nav-links button:hover{
+    color:#4f46e5;
+}
 
-        .hero-content {
-            max-width: 850px;
-        }
+.page{
+    min-height:calc(100vh - 70px);
+    padding:60px 20px;
+}
 
-        .badge {
-            display: inline-block;
-            background: #eef2ff;
-            color: #4f46e5;
-            padding: 8px 16px;
-            border-radius: 30px;
-            margin-bottom: 25px;
-            font-weight: bold;
-        }
+.container{
+    max-width:900px;
+    margin:auto;
+}
 
-        h1 {
-            font-size: clamp(45px, 7vw, 80px);
-            line-height: 1;
-            margin-bottom: 25px;
-        }
+.badge{
+    display:inline-block;
+    background:#eef2ff;
+    color:#4f46e5;
+    padding:8px 16px;
+    border-radius:30px;
+    font-weight:bold;
+    margin-bottom:20px;
+}
 
-        .gradient {
-            background: linear-gradient(90deg, #4f46e5, #9333ea);
-            -webkit-background-clip: text;
-            color: transparent;
-        }
+.title{
+    font-size:48px;
+    margin-bottom:12px;
+}
 
-        .hero p {
-            font-size: 20px;
-            line-height: 1.6;
-            color: #64748b;
-            max-width: 700px;
-            margin: auto;
-        }
+.gradient{
+    background:linear-gradient(90deg,#4f46e5,#9333ea);
+    -webkit-background-clip:text;
+    color:transparent;
+}
 
-        .buttons {
-            margin-top: 35px;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
+.subtitle{
+    color:#64748b;
+    font-size:18px;
+    line-height:1.6;
+    margin-bottom:35px;
+}
 
-        .primary,
-        .secondary {
-            padding: 15px 25px;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-        }
+.card{
+    background:white;
+    padding:35px;
+    border-radius:22px;
+    box-shadow:0 12px 35px rgba(0,0,0,.07);
+}
 
-        .primary {
-            border: none;
-            background: #4f46e5;
-            color: white;
-        }
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:22px;
+}
 
-        .secondary {
-            border: 1px solid #cbd5e1;
-            background: white;
-            color: #334155;
-        }
+.field{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
 
-        .primary:hover,
-        .secondary:hover {
-            transform: translateY(-2px);
-        }
+.field.full{
+    grid-column:1 / -1;
+}
 
-        #app {
-            display: none;
-            padding: 60px 7%;
-            min-height: 100vh;
-        }
+label{
+    font-weight:bold;
+    font-size:14px;
+}
 
-        .dashboard {
-            max-width: 1000px;
-            margin: auto;
-        }
+input,
+select,
+textarea{
+    width:100%;
+    padding:14px;
+    border:1px solid #dbe1ea;
+    border-radius:11px;
+    font-size:15px;
+    outline:none;
+    background:white;
+}
 
-        .card {
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            margin-top: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-        }
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:#6366f1;
+    box-shadow:0 0 0 3px #eef2ff;
+}
 
-        .back {
-            border: none;
-            background: #4f46e5;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            margin-top: 20px;
-        }
+textarea{
+    resize:vertical;
+    min-height:100px;
+}
 
-        @media (max-width: 700px) {
-            nav {
-                padding: 0 20px;
-            }
+.button-row{
+    display:flex;
+    justify-content:flex-end;
+    margin-top:30px;
+}
 
-            .nav-links {
-                display: none;
-            }
+.primary{
+    border:none;
+    background:#4f46e5;
+    color:white;
+    padding:15px 25px;
+    border-radius:11px;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
 
-            h1 {
-                font-size: 50px;
-            }
-        }
-    </style>
+.primary:hover{
+    transform:translateY(-2px);
+}
+
+.secondary{
+    border:1px solid #cbd5e1;
+    background:white;
+    padding:14px 22px;
+    border-radius:11px;
+    cursor:pointer;
+}
+
+.dashboard{
+    display:none;
+}
+
+.profile-card{
+    margin-top:25px;
+}
+
+.profile-row{
+    display:flex;
+    justify-content:space-between;
+    padding:15px 0;
+    border-bottom:1px solid #eef0f4;
+}
+
+.profile-row:last-child{
+    border-bottom:none;
+}
+
+.profile-label{
+    color:#64748b;
+}
+
+.message{
+    margin-top:20px;
+    padding:14px;
+    border-radius:10px;
+    background:#ecfdf5;
+    color:#047857;
+    display:none;
+}
+
+@media(max-width:700px){
+
+    .nav-links{
+        display:none;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .field.full{
+        grid-column:auto;
+    }
+
+    .title{
+        font-size:38px;
+    }
+
+    .card{
+        padding:22px;
+    }
+}
+
+</style>
 </head>
 
 <body>
 
-    <!-- NAVIGATION -->
-    <nav>
-        <div class="logo">LearnMate AI</div>
+<nav>
 
-        <div class="nav-links">
-            <button onclick="openApp()">Dashboard</button>
-            <button onclick="openApp()">Assessment</button>
-            <button onclick="openApp()">Learning Path</button>
-            <button onclick="openApp()">Resources</button>
-            <button onclick="openApp()">AI Assistant</button>
-        </div>
-    </nav>
+    <div class="logo">
+        LearnMate AI
+    </div>
 
-    <!-- LANDING PAGE -->
-    <section class="hero" id="home">
+    <div class="nav-links">
 
-        <div class="hero-content">
+        <button onclick="showHome()">Home</button>
 
-            <div class="badge">
-                ✦ AI-Powered Personalized Learning
-            </div>
+        <button onclick="showProfile()">
+            Profile
+        </button>
 
-            <h1>
-                Learn smarter.<br>
-                <span class="gradient">Learn your way.</span>
-            </h1>
+        <button onclick="showDashboard()">
+            Dashboard
+        </button>
 
-            <p>
-                LearnMate AI analyzes your skills, identifies your learning
-                gaps, and creates a personalized learning journey designed
-                around you.
-            </p>
+        <button onclick="showProfile()">
+            Assessment
+        </button>
 
-            <div class="buttons">
+    </div>
 
-                <button class="primary" onclick="startJourney()">
-                    Start My Learning Journey →
-                </button>
+</nav>
 
-                <button class="secondary" onclick="demoMode()">
-                    Explore Demo
-                </button>
 
-            </div>
+<!-- HOME -->
 
+<section id="home" class="page">
+
+    <div class="container">
+
+        <div class="badge">
+            ✦ AI-Powered Personalized Learning
         </div>
 
-    </section>
+        <h1 class="title">
+            Learn smarter.<br>
+            <span class="gradient">
+                Learn your way.
+            </span>
+        </h1>
 
-    <!-- APPLICATION AREA -->
-    <section id="app">
+        <p class="subtitle">
+            LearnMate AI understands your current skills,
+            identifies your learning gaps and builds a
+            personalized learning journey around you.
+        </p>
 
-        <div class="dashboard">
+        <button class="primary" onclick="showProfile()">
+            Start My Learning Journey →
+        </button>
 
-            <h1 style="font-size:42px;">
-                Welcome to <span class="gradient">LearnMate AI</span>
-            </h1>
+    </div>
 
-            <p style="margin-top:15px;color:#64748b;">
-                Your personalized learning dashboard.
-            </p>
+</section>
 
-            <div class="card">
-                <h2>🚀 Your Learning Journey</h2>
 
-                <p style="margin-top:15px;">
-                    Your dashboard is ready.
-                </p>
+<!-- PROFILE -->
 
-                <p style="margin-top:10px;">
-                    Next, we'll add your profile, Python assessment,
-                    AI skill-gap analysis, personalized roadmap,
-                    resources and AI assistant.
-                </p>
+<section id="profile" class="page" style="display:none;">
 
-                <button class="back" onclick="goHome()">
-                    ← Back to Home
-                </button>
+    <div class="container">
+
+        <div class="badge">
+            STEP 1 OF YOUR JOURNEY
+        </div>
+
+        <h1 class="title">
+            Tell us about <span class="gradient">you.</span>
+        </h1>
+
+        <p class="subtitle">
+            LearnMate AI will use this information to
+            personalize your learning experience.
+        </p>
+
+
+        <div class="card">
+
+            <form id="profileForm">
+
+                <div class="form-grid">
+
+                    <div class="field">
+
+                        <label>
+                            Full Name
+                        </label>
+
+                        <input
+                            id="name"
+                            type="text"
+                            placeholder="Enter your name"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Branch
+                        </label>
+
+                        <input
+                            id="branch"
+                            type="text"
+                            placeholder="e.g. CSE AIML"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Year
+                        </label>
+
+                        <select id="year" required>
+
+                            <option value="">
+                                Select year
+                            </option>
+
+                            <option>
+                                1st Year
+                            </option>
+
+                            <option>
+                                2nd Year
+                            </option>
+
+                            <option>
+                                3rd Year
+                            </option>
+
+                            <option>
+                                4th Year
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Current Skill Level
+                        </label>
+
+                        <select id="skill" required>
+
+                            <option value="">
+                                Select level
+                            </option>
+
+                            <option>
+                                Beginner
+                            </option>
+
+                            <option>
+                                Intermediate
+                            </option>
+
+                            <option>
+                                Advanced
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="field full">
+
+                        <label>
+                            Interests
+                        </label>
+
+                        <input
+                            id="interests"
+                            type="text"
+                            placeholder="Python, AI, Web Development..."
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="field full">
+
+                        <label>
+                            What is your main learning goal?
+                        </label>
+
+                        <textarea
+                            id="goal"
+                            placeholder="Example: I want to learn Python and eventually build AI applications."
+                            required
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+
+                <div class="button-row">
+
+                    <button
+                        type="submit"
+                        class="primary"
+                    >
+                        Continue to Assessment →
+                    </button>
+
+                </div>
+
+            </form>
+
+
+            <div
+                id="successMessage"
+                class="message"
+            >
+                ✅ Profile saved successfully!
             </div>
 
         </div>
 
-    </section>
+    </div>
 
-    <script>
+</section>
 
-        function startJourney() {
-            document.getElementById("home").style.display = "none";
-            document.getElementById("app").style.display = "block";
-            window.scrollTo(0, 0);
-        }
 
-        function openApp() {
-            document.getElementById("home").style.display = "none";
-            document.getElementById("app").style.display = "block";
-            window.scrollTo(0, 0);
-        }
+<!-- DASHBOARD -->
 
-        function demoMode() {
-            document.getElementById("home").style.display = "none";
-            document.getElementById("app").style.display = "block";
-            window.scrollTo(0, 0);
-        }
+<section id="dashboard" class="page dashboard">
 
-        function goHome() {
-            document.getElementById("app").style.display = "none";
-            document.getElementById("home").style.display = "flex";
-            window.scrollTo(0, 0);
-        }
+    <div class="container">
 
-    </script>
+        <div class="badge">
+            PERSONALIZED DASHBOARD
+        </div>
+
+        <h1 class="title">
+            Welcome, <span id="welcomeName" class="gradient"></span>!
+        </h1>
+
+        <p class="subtitle">
+            Here's what LearnMate AI knows about your learning journey.
+        </p>
+
+
+        <div class="card profile-card">
+
+            <h2>
+                👤 Your Learning Profile
+            </h2>
+
+
+            <div class="profile-row">
+
+                <span class="profile-label">
+                    Branch
+                </span>
+
+                <strong id="displayBranch"></strong>
+
+            </div>
+
+
+            <div class="profile-row">
+
+                <span class="profile-label">
+                    Year
+                </span>
+
+                <strong id="displayYear"></strong>
+
+            </div>
+
+
+            <div class="profile-row">
+
+                <span class="profile-label">
+                    Skill Level
+                </span>
+
+                <strong id="displaySkill"></strong>
+
+            </div>
+
+
+            <div class="profile-row">
+
+                <span class="profile-label">
+                    Interests
+                </span>
+
+                <strong id="displayInterests"></strong>
+
+            </div>
+
+
+            <div class="profile-row">
+
+                <span class="profile-label">
+                    Learning Goal
+                </span>
+
+                <strong id="displayGoal"></strong>
+
+            </div>
+
+
+            <div style="margin-top:25px;">
+
+                <button
+                    class="secondary"
+                    onclick="showProfile()"
+                >
+                    ✏️ Edit Profile
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<script>
+
+const home = document.getElementById("home");
+const profile = document.getElementById("profile");
+const dashboard = document.getElementById("dashboard");
+
+
+function hideAll(){
+
+    home.style.display = "none";
+
+    profile.style.display = "none";
+
+    dashboard.style.display = "none";
+
+}
+
+
+function showHome(){
+
+    hideAll();
+
+    home.style.display = "block";
+
+}
+
+
+function showProfile(){
+
+    hideAll();
+
+    profile.style.display = "block";
+
+    loadProfile();
+
+}
+
+
+function showDashboard(){
+
+    const saved = localStorage.getItem("learnmateProfile");
+
+    if(!saved){
+
+        showProfile();
+
+        return;
+
+    }
+
+    loadDashboard();
+
+}
+
+
+function loadProfile(){
+
+    const saved =
+        localStorage.getItem("learnmateProfile");
+
+    if(!saved){
+
+        return;
+
+    }
+
+    const data = JSON.parse(saved);
+
+    document.getElementById("name").value =
+        data.name || "";
+
+    document.getElementById("branch").value =
+        data.branch || "";
+
+    document.getElementById("year").value =
+        data.year || "";
+
+    document.getElementById("skill").value =
+        data.skill || "";
+
+    document.getElementById("interests").value =
+        data.interests || "";
+
+    document.getElementById("goal").value =
+        data.goal || "";
+
+}
+
+
+function loadDashboard(){
+
+    const saved =
+        localStorage.getItem("learnmateProfile");
+
+    if(!saved){
+
+        showProfile();
+
+        return;
+
+    }
+
+    const data = JSON.parse(saved);
+
+    document.getElementById("welcomeName").textContent =
+        data.name;
+
+    document.getElementById("displayBranch").textContent =
+        data.branch;
+
+    document.getElementById("displayYear").textContent =
+        data.year;
+
+    document.getElementById("displaySkill").textContent =
+        data.skill;
+
+    document.getElementById("displayInterests").textContent =
+        data.interests;
+
+    document.getElementById("displayGoal").textContent =
+        data.goal;
+
+    hideAll();
+
+    dashboard.style.display = "block";
+
+}
+
+
+document
+    .getElementById("profileForm")
+    .addEventListener("submit", function(event){
+
+        event.preventDefault();
+
+
+        const data = {
+
+            name:
+                document.getElementById("name").value.trim(),
+
+            branch:
+                document.getElementById("branch").value.trim(),
+
+            year:
+                document.getElementById("year").value,
+
+            skill:
+                document.getElementById("skill").value,
+
+            interests:
+                document.getElementById("interests").value.trim(),
+
+            goal:
+                document.getElementById("goal").value.trim()
+
+        };
+
+
+        localStorage.setItem(
+            "learnmateProfile",
+            JSON.stringify(data)
+        );
+
+
+        document.getElementById(
+            "successMessage"
+        ).style.display = "block";
+
+
+        setTimeout(function(){
+
+            loadDashboard();
+
+        },700);
+
+    });
+
+
+</script>
 
 </body>
 </html>
