@@ -2,354 +2,470 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>LearnMate AI — Personalized Learning</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LearnMate AI</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-font-family:Inter,Arial,sans-serif;
-background:#f6f8ff;
+margin:0;
+font-family:Arial,Helvetica,sans-serif;
+background:#f5f7ff;
 color:#172033;
-line-height:1.5
 }
-button,input,select,textarea{font:inherit}
+a{text-decoration:none;color:inherit}
 button{cursor:pointer}
-.hidden{display:none!important}
 
-nav{
-height:70px;background:rgba(255,255,255,.96);
-border-bottom:1px solid #e5e7eb;
-display:flex;align-items:center;justify-content:space-between;
-padding:0 5%;position:sticky;top:0;z-index:100
-}
-.logo{font-size:22px;font-weight:800;color:#4f46e5}
-.logo span{color:#9333ea}
 .nav{
-display:flex;gap:6px;align-items:center
+position:sticky;
+top:0;
+z-index:99;
+height:70px;
+background:white;
+border-bottom:1px solid #e5e7eb;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 5%;
 }
-.nav button{
-border:0;background:transparent;padding:10px 13px;
-border-radius:9px;color:#475569;font-size:14px
-}
-.nav button:hover,.nav button.active{background:#eef2ff;color:#4f46e5}
-.menu{display:none;border:0;background:white;font-size:24px}
 
-.page{min-height:calc(100vh - 70px);padding:55px 5%}
-.wrap{max-width:1100px;margin:auto}
+.logo{
+font-size:23px;
+font-weight:900;
+color:#4f46e5;
+}
+.logo span{color:#9333ea}
+
+.links{
+display:flex;
+gap:5px;
+flex-wrap:wrap;
+}
+
+.links a{
+padding:10px 12px;
+border-radius:9px;
+font-size:14px;
+font-weight:600;
+color:#475569;
+}
+
+.links a:hover{
+background:#eef2ff;
+color:#4f46e5;
+}
+
+.page{
+min-height:calc(100vh - 70px);
+padding:60px 6%;
+}
+
+.container{
+max-width:1100px;
+margin:auto;
+}
 
 .hero{
 min-height:calc(100vh - 70px);
-display:flex;align-items:center;
-position:relative;overflow:hidden
+display:flex;
+align-items:center;
 }
-.hero:before,.hero:after{
-content:"";position:absolute;border-radius:50%;
-filter:blur(2px);opacity:.45;z-index:-1
-}
-.hero:before{
-width:350px;height:350px;background:#ddd6fe;
-right:5%;top:10%
-}
-.hero:after{
-width:300px;height:300px;background:#bfdbfe;
-left:-100px;bottom:5%
-}
+
 .badge{
-display:inline-block;padding:8px 15px;border-radius:30px;
-background:#eef2ff;color:#4f46e5;font-weight:700;
-font-size:13px;margin-bottom:18px
+display:inline-block;
+background:#eef2ff;
+color:#4f46e5;
+padding:8px 14px;
+border-radius:30px;
+font-size:12px;
+font-weight:800;
+letter-spacing:.5px;
 }
-h1{font-size:clamp(42px,7vw,76px);line-height:1.03}
+
+h1{
+font-size:clamp(45px,8vw,82px);
+line-height:1;
+margin:20px 0;
+}
+
 .gradient{
 background:linear-gradient(90deg,#4f46e5,#9333ea);
--webkit-background-clip:text;background-clip:text;color:transparent
+-webkit-background-clip:text;
+color:transparent;
 }
-.hero p{
-max-width:720px;color:#64748b;font-size:19px;
-margin:22px 0 30px
-}
-.btn{
-border:0;border-radius:12px;padding:14px 20px;
-font-weight:700;transition:.2s
-}
-.btn:hover{transform:translateY(-2px)}
-.primary{background:#4f46e5;color:white}
-.secondary{background:white;color:#334155;border:1px solid #d8dee9}
-.actions{display:flex;gap:12px;flex-wrap:wrap}
 
-.section-title{font-size:40px;margin-bottom:10px}
-.section-sub{color:#64748b;margin-bottom:30px}
+.hero p{
+font-size:19px;
+line-height:1.7;
+color:#64748b;
+max-width:700px;
+}
+
+.buttons{
+display:flex;
+gap:12px;
+flex-wrap:wrap;
+margin-top:25px;
+}
+
+.btn{
+display:inline-block;
+padding:14px 20px;
+border-radius:11px;
+font-weight:800;
+border:0;
+}
+
+.primary{
+background:#4f46e5;
+color:white;
+}
+
+.secondary{
+background:white;
+border:1px solid #d8deea;
+color:#334155;
+}
+
+.primary:hover{
+background:#4338ca;
+}
 
 .card{
-background:white;border:1px solid #e8ebf2;
-border-radius:20px;padding:25px;
-box-shadow:0 10px 35px rgba(30,40,80,.06)
+background:white;
+border:1px solid #e5e7eb;
+border-radius:20px;
+padding:25px;
+box-shadow:0 10px 30px rgba(30,40,90,.06);
+margin-bottom:20px;
 }
 
-.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:18px;
+}
 
-.feature h3{margin:12px 0 7px}
-.feature p{color:#64748b;font-size:14px}
+.grid2{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:18px;
+}
 
-.form-grid{
-display:grid;grid-template-columns:1fr 1fr;gap:18px
+.section-title{
+font-size:42px;
+margin:15px 0 8px;
 }
-.field{display:flex;flex-direction:column;gap:7px}
-.full{grid-column:1/-1}
-label{font-size:14px;font-weight:700}
-input,select,textarea{
-border:1px solid #d9deea;border-radius:10px;
-padding:13px;outline:none;background:white
+
+.subtitle{
+color:#64748b;
+margin-bottom:30px;
 }
-input:focus,select:focus,textarea:focus{
-border-color:#6366f1;box-shadow:0 0 0 3px #eef2ff
+
+.icon{
+font-size:32px;
 }
-textarea{min-height:100px;resize:vertical}
 
 .stat{
-padding:22px;border-radius:17px;background:white;
-border:1px solid #e7eaf2
+padding:22px;
+background:white;
+border:1px solid #e5e7eb;
+border-radius:17px;
 }
-.stat small{color:#64748b}
-.stat h2{font-size:25px;margin-top:6px}
 
-.progress{
-height:10px;background:#e5e7eb;border-radius:20px;overflow:hidden
+.stat small{
+color:#64748b;
 }
-.progress div{
-height:100%;background:linear-gradient(90deg,#4f46e5,#9333ea);
-transition:.3s
+
+.stat h2{
+margin:8px 0 0;
+font-size:28px;
+}
+
+input,select,textarea{
+width:100%;
+padding:13px;
+border:1px solid #d8deea;
+border-radius:10px;
+margin-top:7px;
+outline:none;
+background:white;
+}
+
+textarea{
+height:100px;
+resize:vertical;
+}
+
+.form{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:18px;
+}
+
+.full{
+grid-column:1/-1;
+}
+
+label{
+font-weight:700;
+font-size:14px;
+}
+
+.question{
+font-size:23px;
+font-weight:800;
+margin:20px 0;
 }
 
 .option{
-display:block;width:100%;text-align:left;
-padding:15px;margin:10px 0;
-border:1px solid #dce1eb;background:white;
-border-radius:12px
-}
-.option:hover,.option.selected{
-background:#eef2ff;border-color:#6366f1
+display:block;
+padding:15px;
+margin:9px 0;
+border:1px solid #dce1eb;
+border-radius:11px;
+background:white;
 }
 
-.topic{margin:17px 0}
-.topic-head{display:flex;justify-content:space-between;margin-bottom:7px}
-.topic-bar{height:9px;background:#e5e7eb;border-radius:20px;overflow:hidden}
-.topic-bar div{height:100%;background:#6366f1}
+.option:hover{
+background:#eef2ff;
+border-color:#6366f1;
+}
+
+.progress{
+height:10px;
+background:#e5e7eb;
+border-radius:20px;
+overflow:hidden;
+}
+
+.progress div{
+height:100%;
+width:60%;
+background:linear-gradient(90deg,#4f46e5,#9333ea);
+}
+
+.topic{
+margin:15px 0;
+}
+
+.topichead{
+display:flex;
+justify-content:space-between;
+}
+
+.bar{
+height:9px;
+background:#e5e7eb;
+border-radius:20px;
+overflow:hidden;
+}
+
+.bar div{
+height:100%;
+background:#6366f1;
+}
 
 .roadmap{
 border-left:5px solid #6366f1;
-margin-bottom:16px
 }
-.roadmap.done{border-left-color:#10b981;opacity:.72}
-.roadmap-head{
-display:flex;justify-content:space-between;gap:15px
-}
+
 .priority{
-font-size:11px;font-weight:800;
-padding:5px 9px;border-radius:20px;
-background:#eef2ff;color:#4f46e5
+font-size:11px;
+background:#eef2ff;
+color:#4f46e5;
+padding:5px 9px;
+border-radius:20px;
+font-weight:800;
 }
+
 .meta{
-display:flex;gap:14px;flex-wrap:wrap;
-color:#64748b;font-size:13px;margin:10px 0
+color:#64748b;
+font-size:13px;
+margin:10px 0;
 }
+
 .why{
-background:#f8fafc;padding:13px;border-radius:10px;
-font-size:14px;color:#475569;margin:14px 0
+background:#f8fafc;
+padding:14px;
+border-radius:10px;
+color:#475569;
+margin:14px 0;
 }
-.resource{
-height:100%
+
+.resource h3{
+margin-bottom:5px;
 }
-.resource .type{
-color:#6366f1;font-size:12px;font-weight:800;
-text-transform:uppercase
+
+.resource p{
+color:#64748b;
+font-size:14px;
 }
-.resource p{color:#64748b;font-size:14px;margin-top:8px}
-.filter{
-display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px
-}
-.filter button{
-padding:9px 14px;border-radius:20px;
-border:1px solid #d5dbe6;background:white
-}
-.filter button.active{background:#4f46e5;color:white}
 
 .chat{
-height:430px;display:flex;flex-direction:column
+height:430px;
+display:flex;
+flex-direction:column;
 }
-.messages{
-flex:1;overflow:auto;padding:10px
-}
-.msg{
-max-width:78%;padding:12px 15px;
-border-radius:14px;margin:9px 0;font-size:14px
-}
-.ai{background:#f1f5f9}
-.user{background:#4f46e5;color:white;margin-left:auto}
-.chat-input{display:flex;gap:8px;border-top:1px solid #eee;padding-top:15px}
-.chat-input input{flex:1}
 
-.toast{
-position:fixed;right:20px;bottom:20px;
-background:#172033;color:white;padding:13px 18px;
-border-radius:10px;display:none;z-index:999
+.chatbox{
+flex:1;
+overflow:auto;
+padding:10px;
+}
+
+.message{
+padding:12px 15px;
+border-radius:14px;
+max-width:75%;
+margin:10px 0;
+font-size:14px;
+}
+
+.ai{
+background:#eef2f7;
+}
+
+.me{
+background:#4f46e5;
+color:white;
+margin-left:auto;
+}
+
+.chatinput{
+display:flex;
+gap:8px;
+border-top:1px solid #eee;
+padding-top:15px;
+}
+
+.chatinput input{
+margin:0;
 }
 
 footer{
-padding:35px 5%;text-align:center;color:#64748b;
-background:white;border-top:1px solid #e5e7eb
+background:white;
+padding:35px;
+text-align:center;
+color:#64748b;
 }
 
 @media(max-width:800px){
-.nav{display:none;position:absolute;top:70px;left:0;right:0;
-background:white;padding:10px;flex-direction:column}
-.nav.show{display:flex}
-.nav button{width:100%}
-.menu{display:block}
-.grid3,.grid2,.form-grid{grid-template-columns:1fr}
-.full{grid-column:auto}
-.hero{min-height:80vh}
+.links{
+gap:0;
+overflow-x:auto;
+max-width:70%;
+}
+.links a{
+font-size:11px;
+padding:8px;
+}
+.grid,.grid2,.form{
+grid-template-columns:1fr;
+}
+.full{
+grid-column:auto;
+}
+.page{
+padding:40px 5%;
+}
 }
 </style>
 </head>
 
 <body>
 
-<nav>
-<div class="logo">LearnMate <span>AI</span></div>
+<!-- NAVIGATION -->
+<nav class="nav">
 
-<div class="nav" id="nav">
-<button onclick="go('home')">Home</button>
-<button onclick="go('dashboard')">Dashboard</button>
-<button onclick="go('assessment')">Assessment</button>
-<button onclick="go('path')">Learning Path</button>
-<button onclick="go('resources')">Resources</button>
-<button onclick="go('assistant')">AI Assistant</button>
-<button onclick="go('profile')">Profile</button>
+<a href="#home" class="logo">
+LearnMate <span>AI</span>
+</a>
+
+<div class="links">
+<a href="#home">Home</a>
+<a href="#dashboard">Dashboard</a>
+<a href="#profile">Profile</a>
+<a href="#assessment">Assessment</a>
+<a href="#results">Results</a>
+<a href="#learning">Learning Path</a>
+<a href="#resources">Resources</a>
+<a href="#assistant">AI Assistant</a>
 </div>
 
-<button class="menu" onclick="toggleMenu()">☰</button>
 </nav>
 
 
 <!-- HOME -->
 <section id="home" class="page">
-<div class="wrap hero">
-<div>
-<div class="badge">✦ AI-POWERED PERSONALIZED LEARNING</div>
 
-<h1>Learn smarter.<br>
-<span class="gradient">Learn your way.</span></h1>
+<div class="container hero">
+
+<div>
+
+<span class="badge">✦ AI-POWERED PERSONALIZED LEARNING</span>
+
+<h1>
+Learn smarter.<br>
+<span class="gradient">Learn your way.</span>
+</h1>
 
 <p>
-LearnMate AI analyzes what you know, identifies your skill gaps,
-and creates a personalized learning journey around your goals.
+LearnMate AI understands your current skills, identifies
+your knowledge gaps and creates a personalized learning
+journey designed around your goals.
 </p>
 
-<div class="actions">
-<button class="btn primary" onclick="go('profile')">
+<div class="buttons">
+
+<a class="btn primary" href="#profile">
 Start My Learning Journey →
-</button>
-<button class="btn secondary" onclick="demo()">
-Explore Demo
-</button>
-</div>
-</div>
-</div>
-</section>
+</a>
 
+<a class="btn secondary" href="#dashboard">
+Explore Dashboard
+</a>
 
-<!-- PROFILE -->
-<section id="profile" class="page hidden">
-<div class="wrap">
-
-<div class="badge">STEP 1 • LEARNER PROFILE</div>
-<h2 class="section-title">Build your <span class="gradient">learning profile.</span></h2>
-<p class="section-sub">Tell LearnMate AI about yourself.</p>
-
-<div class="card">
-<div class="form-grid">
-
-<div class="field">
-<label>Full Name</label>
-<input id="name" placeholder="Your name">
 </div>
 
-<div class="field">
-<label>Branch</label>
-<input id="branch" placeholder="CSE AIML">
-</div>
-
-<div class="field">
-<label>Year</label>
-<select id="year">
-<option value="">Select year</option>
-<option>1st Year</option>
-<option>2nd Year</option>
-<option>3rd Year</option>
-<option>4th Year</option>
-</select>
-</div>
-
-<div class="field">
-<label>Current Skill Level</label>
-<select id="skill">
-<option value="">Select level</option>
-<option>Beginner</option>
-<option>Intermediate</option>
-<option>Advanced</option>
-</select>
-</div>
-
-<div class="field full">
-<label>Interests</label>
-<input id="interests" placeholder="Python, AI/ML, Web Development">
-</div>
-
-<div class="field full">
-<label>Learning Goal</label>
-<textarea id="goal" placeholder="Example: Build AI applications"></textarea>
 </div>
 
 </div>
 
-<br>
-
-<button class="btn primary" onclick="saveProfile()">
-Save Profile & Continue →
-</button>
-
-</div>
-</div>
 </section>
 
 
 <!-- DASHBOARD -->
-<section id="dashboard" class="page hidden">
-<div class="wrap">
+<section id="dashboard" class="page">
 
-<div class="badge">PERSONALIZED DASHBOARD</div>
-<h2 class="section-title">Welcome, <span id="dashName" class="gradient">Learner</span> 👋</h2>
-<p class="section-sub">Your learning intelligence center.</p>
+<div class="container">
 
-<div class="grid3">
+<span class="badge">AI LEARNING DASHBOARD</span>
+
+<h2 class="section-title">
+Your learning <span class="gradient">command center.</span>
+</h2>
+
+<p class="subtitle">
+A complete overview of your personalized learning journey.
+</p>
+
+<div class="grid">
 
 <div class="stat">
 <small>Assessment Score</small>
-<h2 id="dashScore">Not taken</h2>
+<h2 id="scoreDash">62%</h2>
 </div>
 
 <div class="stat">
 <small>Primary Skill Gap</small>
-<h2 id="dashGap">—</h2>
+<h2 id="gapDash">Functions</h2>
 </div>
 
 <div class="stat">
 <small>Learning Level</small>
-<h2 id="dashLevel">—</h2>
+<h2 id="levelDash">Intermediate</h2>
 </div>
 
 </div>
@@ -357,478 +473,52 @@ Save Profile & Continue →
 <br>
 
 <div class="card">
-<h3>🧠 AI Analysis</h3>
-<div id="dashAnalysis" class="why">
-Complete your assessment to unlock personalized analysis.
-</div>
 
-<div class="actions">
-<button class="btn primary" onclick="go('assessment')">Take Assessment</button>
-<button class="btn secondary" onclick="go('path')">View Learning Path</button>
-</div>
-</div>
+<h3>🧠 AI Performance Analysis</h3>
 
-</div>
-</section>
-
-
-<!-- ASSESSMENT -->
-<section id="assessment" class="page hidden">
-<div class="wrap">
-
-<div class="badge">STEP 2 • PYTHON SKILL ASSESSMENT</div>
-<h2 class="section-title">Discover your <span class="gradient">Python level.</span></h2>
-<p class="section-sub">10 questions • 6 skill areas • automatic analysis</p>
-
-<div class="card">
-
-<div style="display:flex;justify-content:space-between">
-<strong id="qCounter">Question 1 of 10</strong>
-<span id="qPercent">10%</span>
-</div>
-
-<br>
-<div class="progress"><div id="qProgress" style="width:10%"></div></div>
-<br>
-
-<div class="badge" id="qTopic">Python Basics</div>
-<h3 id="qText" style="font-size:24px;margin:10px 0 20px"></h3>
-
-<div id="options"></div>
-
-<div style="display:flex;justify-content:space-between;margin-top:25px">
-<button class="btn secondary" onclick="prevQ()">← Previous</button>
-<button class="btn primary" onclick="nextQ()">Next →</button>
-</div>
-
-</div>
-</div>
-</section>
-
-
-<!-- RESULTS -->
-<section id="results" class="page hidden">
-<div class="wrap">
-
-<div class="badge">ASSESSMENT COMPLETE</div>
-<h2 class="section-title">Your <span class="gradient">Learning Intelligence</span></h2>
-
-<div class="card" style="text-align:center">
-<div style="font-size:65px;font-weight:900" id="finalScore">0</div>
-<div>/100</div>
-<h2 id="finalLevel"></h2>
-<div class="why" id="overall"></div>
-</div>
-
-<div class="card">
-<h3>📊 Topic Performance</h3>
-<div id="topicResults"></div>
-</div>
-
-<div class="card">
-<h3>🎯 Primary Skill Gap</h3>
-<div class="why" id="gapText"></div>
-
-<button class="btn primary" onclick="go('path')">
-Generate My Learning Path →
-</button>
-</div>
-
-</div>
-</section>
-
-
-<!-- LEARNING PATH -->
-<section id="path" class="page hidden">
-<div class="wrap">
-
-<div class="badge">🧠 ADAPTIVE AI ROADMAP</div>
-<h2 class="section-title">Your <span class="gradient">Learning Path.</span></h2>
-<p class="section-sub">
-Your weakest areas are automatically prioritized.
+<p>
+LearnMate AI analyzes your assessment performance and
+prioritizes the topics where improvement can create the
+greatest learning impact.
 </p>
 
-<div class="grid3">
-
-<div class="stat">
-<small>Roadmap Progress</small>
-<h2 id="pathProgress">0%</h2>
+<div class="why">
+<strong>Current Recommendation:</strong><br>
+Strengthen Python Functions first, then practice Loops
+and Lists before moving toward advanced AI/ML programming.
 </div>
 
-<div class="stat">
-<small>Completed</small>
-<h2 id="pathCompleted">0 / 6</h2>
-</div>
-
-<div class="stat">
-<small>Priority Topic</small>
-<h2 id="pathPriority">—</h2>
+<div class="buttons">
+<a class="btn primary" href="#assessment">Take Assessment</a>
+<a class="btn secondary" href="#learning">View Learning Path</a>
 </div>
 
 </div>
 
-<br>
-
-<div id="roadmap"></div>
-
 </div>
+
 </section>
 
 
-<!-- RESOURCES -->
-<section id="resources" class="page hidden">
-<div class="wrap">
+<!-- PROFILE -->
+<section id="profile" class="page">
 
-<div class="badge">📚 PERSONALIZED RESOURCES</div>
-<h2 class="section-title">Resources for <span class="gradient">you.</span></h2>
-<p class="section-sub">Curated learning material based on your skill gaps.</p>
+<div class="container">
 
-<div id="filters" class="filter"></div>
-<div id="resourceGrid" class="grid2"></div>
+<span class="badge">STEP 1 • PROFILE</span>
 
-</div>
-</section>
+<h2 class="section-title">
+Tell us about <span class="gradient">yourself.</span>
+</h2>
 
-
-<!-- AI ASSISTANT -->
-<section id="assistant" class="page hidden">
-<div class="wrap">
-
-<div class="badge">✦ LEARNMATE AI COACH</div>
-<h2 class="section-title">Ask your <span class="gradient">AI learning coach.</span></h2>
-<p class="section-sub">
-Get explanations and study guidance based on your profile and assessment.
+<p class="subtitle">
+LearnMate uses this information to personalize your learning experience.
 </p>
 
-<div class="card chat">
+<div class="card">
 
-<div id="messages" class="messages">
-<div class="msg ai">
-Hi! I'm your LearnMate AI coach. Ask me about Python,
-your skill gap, study strategy, or what to learn next. 🤖
-</div>
-</div>
+<div class="form">
 
-<div class="chat-input">
-<input id="chatInput" placeholder="Ask: What should I learn first?">
-<button class="btn primary" onclick="sendMessage()">Send</button>
-</div>
-
-</div>
-</div>
-</section>
-
-
-<footer>
-<strong>LearnMate AI</strong> · Your Personalized AI Learning Companion
-</footer>
-
-<div id="toast" class="toast"></div>
-
-
-<script>
-/* =========================
-   DATA
-========================= */
-
-const questions=[
-{
-topic:"Python Basics",
-q:"Which keyword is used to define a function in Python?",
-o:["func","define","def","function"],a:2
-},
-{
-topic:"Variables",
-q:"What is the data type of x = 10?",
-o:["string","float","integer","boolean"],a:2
-},
-{
-topic:"Conditions",
-q:"Which keyword checks another condition after an if statement?",
-o:["else if","elif","elseif","otherwise"],a:1
-},
-{
-topic:"Loops",
-q:"Which loop is commonly used to iterate through a sequence?",
-o:["repeat","for","loop","iterate"],a:1
-},
-{
-topic:"Functions",
-q:"What does the return statement do?",
-o:["Stops Python","Returns a value from a function","Prints a value","Creates a variable"],a:1
-},
-{
-topic:"Lists",
-q:"Which syntax creates a Python list?",
-o:["{1,2,3}","(1,2,3)","[1,2,3]","<1,2,3>"],a:2
-},
-{
-topic:"Python Basics",
-q:"Which function displays output in Python?",
-o:["display()","echo()","print()","output()"],a:2
-},
-{
-topic:"Variables",
-q:"Which symbol is used for assignment?",
-o:["==","=","!=","=>"],a:1
-},
-{
-topic:"Loops",
-q:"Which keyword immediately exits a loop?",
-o:["stop","exit","break","end"],a:2
-},
-{
-topic:"Functions",
-q:"Which keyword creates an anonymous function?",
-o:["anonymous","lambda","function","inline"],a:1
-}
-];
-
-const topics=[
-"Python Basics","Variables","Conditions",
-"Loops","Functions","Lists"
-];
-
-const content={
-"Python Basics":[
-"Python Foundations","Build your core Python syntax and programming foundation.","Beginner","2 hours"
-],
-"Variables":[
-"Variables & Data Types","Understand values, variables, types and conversion.","Beginner","1.5 hours"
-],
-"Conditions":[
-"Conditional Logic","Master if, elif, else and logical operators.","Beginner","1.5 hours"
-],
-"Loops":[
-"Loops & Iteration","Practice for, while, break, continue and nested loops.","Beginner","2 hours"
-],
-"Functions":[
-"Functions Fundamentals","Learn parameters, return values, scope and reusable logic.","Beginner","2 hours"
-],
-"Lists":[
-"Python Lists","Learn indexing, slicing, methods and collection processing.","Beginner","1.5 hours"
-]
-};
-
-const resources=[
-["Python Basics","Concept Guide","Python Fundamentals","Syntax, input/output, data types and basic programs.","45 min"],
-["Python Basics","Practice","Python Basics Challenges","Practice small programs using core Python concepts.","60 min"],
-["Variables","Concept Guide","Variables & Data Types","Understand assignment, strings, integers, floats and conversion.","40 min"],
-["Variables","Practice","Variable Challenges","Solve exercises involving assignment and data types.","50 min"],
-["Conditions","Concept Guide","Conditional Statements","Learn if, elif, else and logical operators.","45 min"],
-["Conditions","Practice","Decision-Making Problems","Apply conditional logic to practical programming situations.","60 min"],
-["Loops","Concept Guide","Loops & Iteration","Understand for, while, break and continue.","50 min"],
-["Loops","Practice","Loop Challenges","Practice iteration with numbers, patterns and collections.","60 min"],
-["Functions","Concept Guide","Functions in Python","Learn definitions, parameters, return values and scope.","50 min"],
-["Functions","Practice","Function Challenges","Build reusable functions to solve problems.","60 min"],
-["Lists","Concept Guide","Python Lists","Learn indexing, slicing, methods and iteration.","45 min"],
-["Lists","Practice","List Manipulation Challenges","Solve practical problems using Python lists.","60 min"]
-];
-
-
-/* =========================
-   STATE
-========================= */
-
-let current=0;
-let answers=new Array(10).fill(null);
-let result=null;
-let roadmapData=[];
-let filter="All";
-
-
-/* =========================
-   NAVIGATION
-========================= */
-
-function toggleMenu(){
-document.getElementById("nav").classList.toggle("show");
-}
-
-function go(id){
-
-document.querySelectorAll(".page").forEach(x=>{
-x.classList.add("hidden");
-});
-
-document.getElementById(id).classList.remove("hidden");
-
-document.getElementById("nav").classList.remove("show");
-
-window.scrollTo(0,0);
-
-if(id==="dashboard")loadDashboard();
-if(id==="assessment")startAssessment();
-if(id==="results")loadResults();
-if(id==="path")loadPath();
-if(id==="resources")loadResources();
-if(id==="profile")loadProfile();
-if(id==="assistant")loadChat();
-}
-
-
-/* =========================
-   PROFILE
-========================= */
-
-function saveProfile(){
-
-const name=document.getElementById("name").value.trim();
-
-if(!name){
-alert("Please enter your name.");
-return;
-}
-
-const data={
-name:name,
-branch:document.getElementById("branch").value||"CSE AIML",
-year:document.getElementById("year").value||"1st Year",
-skill:document.getElementById("skill").value||"Beginner",
-interests:document.getElementById("interests").value||"Python, AI/ML",
-goal:document.getElementById("goal").value||"Build AI applications"
-};
-
-localStorage.setItem("learnmateProfile",JSON.stringify(data));
-
-toast("Profile saved successfully!");
-
-startAssessment();
-}
-
-function loadProfile(){
-
-const saved=localStorage.getItem("learnmateProfile");
-if(!saved)return;
-
-const d=JSON.parse(saved);
-
-document.getElementById("name").value=d.name||"";
-document.getElementById("branch").value=d.branch||"";
-document.getElementById("year").value=d.year||"";
-document.getElementById("skill").value=d.skill||"";
-document.getElementById("interests").value=d.interests||"";
-document.getElementById("goal").value=d.goal||"";
-}
-
-
-/* =========================
-   ASSESSMENT
-========================= */
-
-function startAssessment(){
-
-if(!localStorage.getItem("learnmateProfile")){
-go("profile");
-return;
-}
-
-document.getElementById("assessment").classList.remove("hidden");
-
-document.querySelectorAll(".page").forEach(x=>{
-if(x.id!=="assessment")x.classList.add("hidden");
-});
-
-current=0;
-answers=new Array(10).fill(null);
-
-renderQuestion();
-}
-
-function renderQuestion(){
-
-const q=questions[current];
-
-document.getElementById("qCounter").textContent=
-"Question "+(current+1)+" of 10";
-
-const pct=Math.round(((current+1)/10)*100);
-
-document.getElementById("qPercent").textContent=pct+"%";
-document.getElementById("qProgress").style.width=pct+"%";
-
-document.getElementById("qTopic").textContent=q.topic;
-document.getElementById("qText").textContent=q.q;
-
-const box=document.getElementById("options");
-box.innerHTML="";
-
-q.o.forEach((text,i)=>{
-
-const b=document.createElement("button");
-
-b.className="option"+(answers[current]===i?" selected":"");
-
-b.textContent=String.fromCharCode(65+i)+". "+text;
-
-b.onclick=()=>{
-answers[current]=i;
-renderQuestion();
-};
-
-box.appendChild(b);
-});
-}
-
-function nextQ(){
-
-if(answers[current]===null){
-alert("Please select an answer.");
-return;
-}
-
-if(current<9){
-current++;
-renderQuestion();
-}else{
-calculate();
-}
-}
-
-function prevQ(){
-
-if(current>0){
-current--;
-renderQuestion();
-}
-}
-
-
-/* =========================
-   ANALYSIS
-========================= */
-
-function calculate(){
-
-let correct=0;
-
-const data={};
-
-topics.forEach(t=>{
-data[t]={correct:0,total:0};
-});
-
-questions.forEach((q,i)=>{
-
-data[q.topic].total++;
-
-if(answers[i]===q.a){
-correct++;
-data[q.topic].correct++;
-}
-});
-
-const score=Math.round(correct*10);
-
-let level=
-score<40?"Beginner":
-score<70?"Intermediate":"Advanced";
-
-let weakest=topics[0];
-let strongest=topics[0];
-
-topics.forEach(t=>{
-
-const s=data[t].correct/data[t].total;
-const ws=data[weakest].correct/data[weakest].total;
-const ss=data[strongest].correct/data[stron
+<div>
+<label>Full Name</label>
+<input id="name" placeholder="
